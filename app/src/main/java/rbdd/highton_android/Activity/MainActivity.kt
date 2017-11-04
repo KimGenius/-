@@ -21,30 +21,6 @@ class MainActivity : BaseActivity() {
         GlideUtil.setGliding(this, R.drawable.ic_nav_drawer, navigationBarImg)
         GlideUtil.setGliding(this, R.drawable.ic_home_on, homeBtn)
         GlideUtil.setGliding(this, R.drawable.ic_list_off, listBtn)
-//        googleSign.setOnClickListener {
-//            googleSignIn = GoogleSignInManager(MainActivity@ this)
-//        }
-//
-//        callbackManager = CallbackManager.Factory.create()
-////        loginButton.setReadPermissions("email", "public_profile", "user_friends")
-//        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"))
-//        loginButton.setReadPermissions("email")
-//        loginButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
-//            override fun onSuccess(result: LoginResult?) {
-//                Log.d("facebook", result.toString())
-//                Log.d("facebook", result!!.accessToken.token)
-//            }
-//
-//            override fun onError(error: FacebookException?) {
-//                Log.d("facebookError", error.toString())
-//            }
-//
-//            override fun onCancel() {
-//                showToast("취소;")
-//            }
-//        })
-
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
