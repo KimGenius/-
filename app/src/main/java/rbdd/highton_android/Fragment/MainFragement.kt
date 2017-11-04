@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_main.view.*
+import rbdd.highton_android.Adapter.MainAdapter
 import rbdd.highton_android.R
 
 /**
@@ -18,7 +19,7 @@ class MainFragement: Fragment() {
         val view = inflater.inflate(R.layout.fragment_main, container, false)
         with(view){
             recyclerView.layoutManager = LinearLayoutManager(container.context)
-            recyclerView.adapter =
+            recyclerView.adapter = MainAdapter()
         }
 
         return view

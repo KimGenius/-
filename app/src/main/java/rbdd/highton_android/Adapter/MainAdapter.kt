@@ -35,10 +35,13 @@ class MainViewHolder(view: View): RecyclerView.ViewHolder(view){
 
     public fun bind(title: String, content: String, from: String, like: Int, unLick: Int){
         with(view){
-            titleText.text =
+            titleText.text = title
+            contentText.text = content
+            fromText.text = from
+            likeCountText.text = "$like"
+            unLickCountText.text = "$unLick"
         }
     }
-
 
 }
 
