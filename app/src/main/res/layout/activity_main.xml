@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="60dp">
         <ImageView
@@ -37,7 +38,13 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/mainPager"
         android:layout_width="match_parent"
+<<<<<<< HEAD
         android:layout_height="match_parent">
+=======
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topBar"
+        android:layout_marginBottom="70dp">
+>>>>>>> 7c112aebd84377e7aede29531f83c06fb8396ae8
 
     </android.support.v4.view.ViewPager>
 
