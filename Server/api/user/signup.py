@@ -21,6 +21,16 @@ class EmailCheck(Resource):
 class IDCheck(Resource):
     uri = '/check/id'
 
+    def post(self):
+        id = request.form.get('id')
+
+        if AccountModel.objects(id=id):
+            # Exist
+            return Response('', 204)
+        else:
+            # Not Exist
+            return Response('', 201)
+
 
 class Signup(Resource):
     uri = '/signup'
