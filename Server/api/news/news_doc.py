@@ -168,7 +168,251 @@ MAIN_PAGE_GET = {
             }
         },
         '204': {
-            'description': '서버에 뉴스 데이터 없음'
+            'description': '반환할 뉴스 데이터 없음'
+        }
+    }
+}
+
+NEWS_LIST_GET = {
+    'tags': ['뉴스'],
+    'description': '뉴스 리스트(페이지 기반으로 8개씩 잘림)',
+    'parameters': [
+        {
+            'name': 'page',
+            'description': '페이지 ex) 1, 2, 3',
+            'in': 'query',
+            'type': 'int',
+            'required': True
+        }
+    ],
+    'responses': {
+        '200': {
+            'description': '반환할 뉴스 데이터 있음',
+            'examples': {
+                'application/json': [
+                    {
+                        "id": "59fe0c9967518016a82f60b3",
+                        "title": "트럼프 방한 사흘 앞…'환영 vs 반대' 줄 잇는 집회 신고",
+                        "description": "[앵커] 오늘(4일) 서울 도심에서는 트럼프 대통령의 방한을 환영하는 집회와 반대하는 집회가 각각 동시에 열렸습니다. 방한 기간 중에도 반트럼프 집회와 시위가 잇따라 신고돼 있어 정부가 대책마련에... ",
+                        "like_count": 0,
+                        "unlike_count": 0
+                    },
+                    {
+                        "id": "59fe0c996751804138329b51",
+                        "title": "트럼프, 취임 후 첫 아시아 순방…'북핵 문제 우선 논의'",
+                        "description": "&lt;앵커&gt; 트럼프 미국 대통령이 취임 후 처음으로 아시아 순방에 나섰습니다. 우리나라엔 다음 주 화요일에... &lt;기자&gt; 백악관에서 공항으로 가는 헬기에 오르기 전 트럼프 대통령은 아시아 순방의 우선 과제로 다시 북핵과... ",
+                        "like_count": 0,
+                        "unlike_count": 0
+                    },
+                    {
+                        "id": "59fe0c9a6751804138329b52",
+                        "title": "일본, 정상 대하듯 이방카 극진 대접…정상회담 노림수?",
+                        "description": "[앵커] 내일(5일) 트럼프 대통령을 맞게 될 일본은, 그보다 앞서 방문한 장녀 이방카를 국빈 이상으로... 일본에 오신 것을 환영합니다!] 일본은 이방카 트럼프의 방문으로 떠들썩했습니다. 전통음악과 음식으로... ",
+                        "like_count": 0,
+                        "unlike_count": 0
+                    },
+                    {
+                        "id": "59fe0c9a67518016a82f60b4",
+                        "title": "트럼프 순방 동선 따르면 亞 권력지도 보인다",
+                        "description": "트럼프 순방 동선 따르면 亞 권력지도 보인다 [뉴스리뷰] [앵커] 도널드 트럼프 미국 대통령이 역대 미 대통령으로는 26년 만에 가장 긴 13일의 아시아 순방 일정에 돌입했습니다. 향후 미국의 아시아 정책 골간을... ",
+                        "like_count": 0,
+                        "unlike_count": 0
+                    },
+                    {
+                        "id": "59fe0c9a6751804138329b53",
+                        "title": "한·미 공조 강화 의지…정부, 북 은행·지점장 제재 검토",
+                        "description": "북한 은행과 지점장 등을 제재 대상으로 특정하는 조치인데, 트럼프 대통령 방한에 즈음해 한·미공조... 실제로 트럼프 대통령이 이번 방한 때 국회 연설 등을 통해 한국의 대북제재 동참을 촉구할 가능성도... ",
+                        "like_count": 0,
+                        "unlike_count": 0
+                    },
+                    {
+                        "id": "59fe0c9a67518016a82f60b5",
+                        "title": "트럼프 방한 찬반집회… '오지마'vs'한미동맹 강화'",
+                        "description": "[트럼프 美대통령 7일 방한 앞두고 4일 서울 광화문 일대서 양쪽 나란히 집회] 도널드 트럼프 미국 대통령의 방한을 사흘 앞둔 4일 오후 서울 종로구 르메이에르 앞에서 열린 ‘NO 트럼프·NO WAR 범국민대회’에서... ",
+                        "like_count": 0,
+                        "unlike_count": 0
+                    },
+                    {
+                        "id": "59fe0c9b67518016a82f60b6",
+                        "title": "트럼프가 가장 먼저 찾는 '캠프 험프리스'는 어떤 곳?",
+                        "description": "트럼프가 가장 먼저 찾는 '캠프 험프리스'는 어떤 곳? [뉴스리뷰] [앵커] 우리나라를 찾는 도널드 트럼프 미국 대통령의 첫 일정은 경기도 평택의 주한미군 기지 '캠프 험프리스' 방문입니다. 한미 동맹의 상징으로 꼽히는... ",
+                        "like_count": 0,
+                        "unlike_count": 0
+                    },
+                    {
+                        "id": "59fe0c9b6751804138329b54",
+                        "title": "대구촛불 'TK 적폐 청산 아직...촛불은 계속될 것'",
+                        "description": "촛불 트럼프 미국 대통령의 방한에 대한 '반대' 목소리가 높았던 다른 지역과는 달리 이번 대구촛불대회에서는 '끝나지 않은 적폐청산'에 대한 목소리가 컸다. 사드(THAAD, 고고도미사일방어체계)기지 인근 소성리 마을... ",
+                        "like_count": 0,
+                        "unlike_count": 0
+                    }
+                ]
+            }
+        },
+        '204': {
+            'description': '반환할 뉴스 데이터 없음'
+        }
+    }
+}
+
+NEWS_GET = {
+    'tags': ['뉴스'],
+    'description': '뉴스 세부 정보 조회',
+    'parameters': [
+        {
+            'name': 'id',
+            'description': '세부 정보를 조회할 뉴스의 ID',
+            'in': 'query',
+            'type': 'str',
+            'required': True
+        }
+    ],
+    'responses': {
+        '200': {
+            'description': '세부 정보 조회 성공',
+            'examples': {
+                'application/json': {
+                    "title": "트럼프, 취임 후 첫 아시아 순방…'북핵 문제 우선 논의'",
+                    "content": "\t\n\t<앵커>\n\n트럼프 미국 대통령이 취임 후 처음으로 아시아 순방에 나섰습니다. 우리나라엔 다음 주 화요일에 오는데, 북핵 문제 해결에 중점을 두겠다고 밝혔습니다.\n\n워싱턴 손석민 특파원입니다.\n\n<기자>\n\n백악관에서 공항으로 가는 헬기에 오르기 전 트럼프 대통령은 아시아 순방의 우선 과제로 다시 북핵과 무역을 거론했습니다.\n\n[트럼프/美 대통령 : 아시아 정상들과 무역은 물론 분명히 북핵 문제를 논의할 예정인데, 굉장히 성공적인 회의가 될 겁니다.]\n\n이어 하와이에 도착해 주한미군을 지휘하는 태평양사령부로부터 보고를 받는 것으로 공식 일정을 시작했습니다.\n\n트럼프 대통령은 일정을 하루 더 연장해 오는 14일까지 일본과 한국, 중국, 베트남, 필리핀까지 5개국을 순방하며 아시아태평양경제협력체 정상회의 등 다자회의에도 참석합니다.\n\n오는 7일 한미 정상회담에선 군사옵션을 포함한 북핵 공조, 한미 FTA 개정, 방위비 분담금, 전시작전권 전환 등이 테이블에 오를 것으로 보입니다.\n\n트럼프 대통령이 한·중·일 정상과 양자 회담을 통해 얼마나 일치된 목소리를 끌어낼 수 있느냐에 따라, 북핵 문제는 분수령을 맞을 전망입니다.\n\n또 다른 순방 목표로 천명한 무역문제는 우리를 비롯한 한·중·일 모두에게 큰 부담입니다.\n\n미국 내 지지자를 의식한 강경 모드의 파상공세가 예상됩니다.\n\n트럼프 대통령이 아시아 순방을 국내 문제 돌파구로 활용하기 위해 명분보다는 경제적 실리 챙기기에 집중할 것이라는 분석도 나오고 있습니다.\n\n(영상편집 : 이승열)  \n\n손석민 기자(hermes@sbs.co.kr)\n\n\n\n\n\n※ © SBS &amp; SBS I&amp;M.; : 무단복제 및 재배포 금지\n\t",
+                    "link": "http://news.naver.com/main/read.nhn?mode=LSD&mid=sec&sid1=104&oid=055&aid=0000582778",
+                    "pub_date": "2017-11-04 20:51:00"
+                }
+            }
+        }
+    }
+}
+
+COMMENT_POST = {
+    'tags': ['댓글'],
+    'description': '댓글 업로드',
+    'parameters': [
+        {
+            'name': 'Authorization',
+            'description': 'JWT Token(JWT ***)',
+            'in': 'header',
+            'type': 'str',
+            'required': True
+        },
+        {
+            'name': 'id',
+            'description': '댓글을 업로드할 뉴스 ID',
+            'in': 'formData',
+            'type': 'str',
+            'required': True
+        },
+        {
+            'name': 'content',
+            'description': '댓글의 내용',
+            'in': 'formData',
+            'type': 'str',
+            'required': True
+        }
+    ],
+    'responses': {
+        '201': {
+            'description': '댓글 업로드 성공'
+        }
+    }
+}
+
+COMMENT_GET = {
+    'tags': ['댓글'],
+    'description': '댓글 리스트 조회',
+    'parameters': [
+        {
+            'name': 'Authorization',
+            'description': 'JWT Token(JWT ***)',
+            'in': 'header',
+            'type': 'str',
+            'required': True
+        },
+        {
+            'name': 'id',
+            'description': '댓글 리스트를 조회할 뉴스 ID',
+            'in': 'query',
+            'type': 'str',
+            'required': True
+        }
+    ],
+    'responses': {
+        '200': {
+            'description': '댓글 리스트 조회 성공(array의 length가 0일 수 있음)',
+            'examples': {
+                'application/json': [
+                    {
+                        "id": "59fe0c9b6751804138329e15",
+                        "writer": "조민규",
+                        "content": "트럼프는 정말 밥도둑이에염",
+                        "like_count": 3,
+                        "liked": True
+                    },
+                    {
+                        "id": "59fe0c9b6751804138321415",
+                        "writer": "조민규",
+                        "content": "앙 기모찌",
+                        "like_count": 1,
+                        "liked": False
+                    }
+                ]
+            }
+        }
+    }
+}
+
+COMMENT_LIKE_POST = {
+    'tags': ['좋아요'],
+    'description': '댓글 좋아요',
+    'parameters': [
+        {
+            'name': 'Authorization',
+            'description': 'JWT Token(JWT ***)',
+            'in': 'header',
+            'type': 'str',
+            'required': True
+        },
+        {
+            'name': 'id',
+            'description': '좋아요를 달 댓글 ID',
+            'in': 'formData',
+            'type': 'str',
+            'required': True
+        }
+    ],
+    'responses': {
+        '201': {
+            'description': '좋아요 성공'
+        },
+        '204': {
+            'description': '좋아요 실패(이미 좋아요를 누름)'
+        }
+    }
+}
+
+COMMENT_LIKE_DELETE = {
+    'tags': ['좋아요'],
+    'description': '댓글 좋아요 취소',
+    'parameters': [
+        {
+            'name': 'Authorization',
+            'description': 'JWT Token(JWT ***)',
+            'in': 'header',
+            'type': 'str',
+            'required': True
+        },
+        {
+            'name': 'id',
+            'description': '좋아요를 취소할 댓글 ID',
+            'in': 'formData',
+            'type': 'str',
+            'required': True
+        }
+    ],
+    'responses': {
+        '201': {
+            'description': '좋아요 취소 성공'
+        },
+        '204': {
+            'description': '좋아요 취소 실패(좋아요를 누르지 않은 상태였음)'
         }
     }
 }

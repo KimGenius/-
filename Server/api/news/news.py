@@ -47,6 +47,7 @@ class MainPage(Resource):
 class NewsList(Resource):
     uri = '/news/list'
 
+    @swagger.doc(news_doc.NEWS_LIST_GET)
     def get(self):
         """
         뉴스 리스트
@@ -64,7 +65,7 @@ class NewsList(Resource):
             'description': item.description,
             'like_count': item.like_count,
             'unlike_count': item.unlike_count
-        } for item in news][(page - 1) * 8: page * 8]
+        } for item in news]
 
         return sorted(news, key=lambda k: k['like_count'], reverse=True)[(page - 1) * 8: page * 8], 200
 
@@ -72,9 +73,10 @@ class NewsList(Resource):
 class News(Resource):
     uri = '/news'
 
+    @swagger.doc(news_doc.NEWS_GET)
     def get(self):
         """
-        뉴스 Detail
+        뉴스 세부 정보 조회
         """
         news_id = request.args.get('id')
 
@@ -88,9 +90,14 @@ class News(Resource):
         }, 200
 
 
+class NewsLike(Resource):
+    uri = '/news/like'
+
+
 class Comment(Resource):
     uri = '/news/comment'
 
+    @swagger.doc(news_doc.COMMENT_POST)
     @jwt_required
     def post(self):
         """
@@ -106,6 +113,7 @@ class Comment(Resource):
 
         return Response('', 201)
 
+    @swagger.doc(news_doc.COMMENT_GET)
     @jwt_required
     def get(self):
         """
@@ -119,22 +127,26 @@ class Comment(Resource):
             'content': comment.content,
             'like_count': len(list(comment.liked_users)),
             'liked': get_jwt_identity() in list(comment.liked_users)
-        } for comment in CommentModel.objects(news=NewsModel.objects(id=news_id).first())]
+        } for comment in CommentModel.objects(news=NewsModel.objects(id=news_id).first())], 200
 
 
-class Like(Resource):
+class CommentLike(Resource):
     uri = '/news/comment/like'
 
+    @swagger.doc(news_doc.COMMENT_LIKE_POST)
     @jwt_required
     def post(self):
         """
-        좋아요
+        댓글 좋아요
         """
         comment_id = request.form.get('id')
 
         comment = CommentModel.objects(id=comment_id).first()
 
         liked_users = list(comment.liked_users)
+        if get_jwt_identity() in liked_users:
+            return Response('', 204)
+
         liked_users.append(get_jwt_identity())
         comment.update(liked_users=liked_users)
 
@@ -143,16 +155,20 @@ class Like(Resource):
 
         return Response('', 201)
 
+    @swagger.doc(news_doc.COMMENT_LIKE_DELETE)
     @jwt_required
     def delete(self):
         """
-        좋아요 취소
+        댓글 좋아요 취소
         """
         comment_id = request.form.get('id')
 
         comment = CommentModel.objects(id=comment_id).first()
 
         liked_users = list(comment.liked_users)
+        if get_jwt_identity() not in liked_users:
+            return Response('', 204)
+
         liked_users.remove(get_jwt_identity())
         comment.update(liked_users=liked_users)
 
