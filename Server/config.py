@@ -14,6 +14,6 @@ API_DESC = '''
 '''.format(PORT)
 
 SECRET_KEY = os.getenv('SECRET_KEY')
-JWT_ACCESS_TOKEN_EXPIRES = timedelta(days=365)
+JWT_ACCESS_TOKEN_EXPIRES = timedelta(days=30)
 JWT_HEADER_TYPE = 'JWT'
 # http://flask-jwt-extended.readthedocs.io/en/latest/options.html
