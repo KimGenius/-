@@ -4,6 +4,8 @@ import re
 from bs4 import BeautifulSoup as Soup
 from requests import get
 
+from db.models.news import NewsModel
+
 _HEADERS = {
     'X-Naver-Client-Id': 'ixbtTAgetTMK_pNRfvh9',
     'X-Naver-Client-Secret': 'PYVMBVVwta'
@@ -37,3 +39,5 @@ def parse():
             description = item['description'].replace('<b>', '').replace('</b>', '').replace('&quot;', "'")
             link = item['link']
             pub_date = item['pubDate']
+
+            NewsModel(title=title, description=description, link=link, pub_date=pub_date).save()

@@ -7,7 +7,7 @@ class Comment(EmbeddedDocument):
     id = ObjectIdField(primary_key=True, default=ObjectId())
     writer = StringField(required=True)
     content = StringField(required=True)
-    like_count = IntField(default=0)
+    like_count = IntField(required=True, default=0)
 
 
 class NewsModel(Document):
@@ -15,4 +15,7 @@ class NewsModel(Document):
     description = StringField(required=True)
     link = StringField(required=True)
     pub_date = StringField(required=True)
+    like_count = IntField(required=True, default=0)
+    unlike_count = IntField(required=True, default=0)
+
     comments = ListField(EmbeddedDocumentField(Comment), default=[])
