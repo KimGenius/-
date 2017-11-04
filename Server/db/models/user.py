@@ -6,7 +6,7 @@ from db.mongo import *
 class AccountModel(Document):
     id = StringField(primary_key=True)
     pw = StringField()
-    email = StringField(required=True, unique=True)
+    email = StringField(unique=True)
     name = StringField(required=True, default='익명 사용자')
 
     signup_date = StringField(required=True, default=str(date.today()))
