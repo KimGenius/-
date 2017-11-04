@@ -36,4 +36,8 @@ _app = _factory()
 
 
 if __name__ == '__main__':
+    import threading
+    from support.api_interaction import news_api
+
+    # threading.Thread(target=news_api.parse).start()
     _app.run(host='localhost', port=_app.config['PORT'], threaded=True, debug=True)

@@ -5,8 +5,7 @@ from flask_jwt_extended import get_jwt_identity, jwt_required
 from flask_restful_swagger_2 import Resource, request, swagger
 
 from api.news import news_doc
-from db.models.user import AccountModel
-from db.models.news import NewsModel, CommentModel
+from db.models.news import NewsModel
 
 
 class MainPage(Resource):
