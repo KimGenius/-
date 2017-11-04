@@ -40,6 +40,7 @@ class BasicAuth(Resource):
 class FacebookAuth(Resource):
     uri = '/auth/facebook'
 
+    @swagger.doc(auth_doc.FACEBOOK_AUTH_POST)
     def post(self):
         """
         페이스북 로그인
@@ -59,6 +60,7 @@ class FacebookAuth(Resource):
 class GoogleAuth(Resource):
     uri = '/auth/google'
 
+    @swagger.doc(auth_doc.GOOGLE_AUTH_POST)
     def post(self):
         """
         구글 로그인
