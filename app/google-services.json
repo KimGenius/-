@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "820978258035",
+    "project_id": "trump-today"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:820978258035:android:e5aea28b70873133",
+        "android_client_info": {
+          "package_name": "rbdd.highton_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "820978258035-sg2fgjtvabc6dgcbgcv9r9vl0ietjh0j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "rbdd.highton_android",
+            "certificate_hash": "a65f9349138f9f1fb544ba0b5fc803549f0e9d82"
+          }
+        },
+        {
+          "client_id": "820978258035-fboui7tab38e8r3f7q2rel173b4j76bv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrBCworOlqMpbd7FDe-bXXCFa1vvSeAXk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
