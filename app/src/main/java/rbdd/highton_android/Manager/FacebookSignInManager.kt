@@ -1,5 +1,6 @@
 package rbdd.highton_android.Manager
 
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import com.facebook.CallbackManager
@@ -8,6 +9,7 @@ import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
+import rbdd.highton_android.Activity.MainActivity
 import rbdd.highton_android.Util.BaseActivity
 import java.util.*
 
@@ -23,6 +25,7 @@ class FacebookSignInManager {
             override fun onSuccess(result: LoginResult?) {
                 Log.d("facebook", result.toString())
                 activity.saveCookie(result!!.accessToken.token)
+                activity.startActivity(Intent(activity, MainActivity::class.java))
             }
 
             override fun onError(error: FacebookException?) {

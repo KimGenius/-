@@ -57,38 +57,11 @@
         app:layout_constraintVertical_bias="0.42" />
 
     <EditText
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:hint="아이디를 입력하세요."
-        android:textColor="@color/colorSub"
-        android:textColorHint="@color/colorSub"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.47" />
-
-    <TextView
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="아이디"
-        android:textColor="@color/colorSub"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.42" />
-
-    <EditText
         android:id="@+id/idEdit"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="아이디를 입력하세요."
+        android:singleLine="true"
         android:textColor="@color/colorSub"
         android:textColorHint="@color/colorSub"
         android:textSize="14sp"
@@ -118,6 +91,8 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="비밀번호를 입력하세요."
+        android:singleLine="true"
+        android:inputType="textPassword"
         android:textColor="@color/colorSub"
         android:textColorHint="@color/colorSub"
         android:textSize="14sp"
