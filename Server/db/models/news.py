@@ -1,14 +1,5 @@
-from bson.objectid import ObjectId
-
 from db.mongo import *
 from db.models.user import AccountModel
-
-
-class CommentModel(EmbeddedDocument):
-    id = ObjectIdField(primary_key=True, default=ObjectId())
-    writer = ReferenceField(AccountModel, required=True)
-    content = StringField(required=True)
-    liked_users = ListField(required=True, default=[])
 
 
 class NewsModel(Document):
@@ -19,4 +10,9 @@ class NewsModel(Document):
     like_count = IntField(required=True, default=0)
     unlike_count = IntField(required=True, default=0)
 
-    comments = ListField(EmbeddedDocumentField(CommentModel), default=[])
+
+class CommentModel(Document):
+    news = ReferenceField(NewsModel)
+    writer = ReferenceField(AccountModel, required=True)
+    content = StringField(required=True)
+    liked_users = ListField(default=[])
