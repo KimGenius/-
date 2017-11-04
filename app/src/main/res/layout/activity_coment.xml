@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Toolbar
+        android:contentInsetStart="0dp"
+        android:elevation="4dp"
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:src="@drawable/ic_back"
+                android:scaleType="centerCrop"
+                android:background="@android:color/transparent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp" />
+
+            <TextView
+                android:textColor="@color/colorMain"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="댓글"/>
+
+            <ImageView
+                android:layout_marginRight="8dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_chat"/>
+
+            <TextView
+                android:layout_marginRight="16dp"
+                android:textSize="20dp"
+                android:text="200"
+                android:textStyle="bold"
+                android:textColor="@color/colorMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </Toolbar>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+
+
+</LinearLayout>

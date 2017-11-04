@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Toolbar
+        android:contentInsetStart="0dp"
+        android:elevation="4dp"
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/backBtn"
+                android:src="@drawable/ic_back"
+                android:scaleType="centerCrop"
+                android:background="@android:color/transparent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp" />
+
+            <TextView
+                android:textColor="@color/colorSub"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="활동 기록"/>
+        </LinearLayout>
+    </Toolbar>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:orientation="vertical"
+       android:layout_margin="16dp"
+       android:layout_weight="1">
+       
+       <LinearLayout
+           android:orientation="horizontal"
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:layout_weight="1">
+
+           <RelativeLayout
+               android:id="@+id/logWrap"
+               android:background="@color/colorSub"
+               android:layout_margin="8dp"
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:layout_height="match_parent">
+
+               <LinearLayout
+                   android:gravity="center"
+                   android:layout_marginTop="16dp"
+                   android:layout_centerHorizontal="true"
+                   android:orientation="vertical"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+
+                   <TextView
+                       android:textColor="#FFFFFF"
+                       android:textStyle="bold"
+                       android:textSize="20dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="가입한지"/>
+
+                   <TextView
+                       android:id="@+id/signupDay"
+                       android:textColor="#FFFFFF"
+                       android:textStyle="bold"
+                       android:textSize="20dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="42일"/>
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_marginBottom="16dp"
+                   android:gravity="center"
+                   android:orientation="vertical"
+                   android:layout_centerHorizontal="true"
+                   android:layout_alignParentBottom="true"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+
+                   <ImageView
+                       android:layout_width="20dp"
+                       android:layout_height="20dp"
+                       android:src="@drawable/ic_star"/>
+
+                   <TextView
+                       android:id="@+id/signupRank"
+                       android:textColor="#FFFFFF"
+                       android:layout_marginTop="4dp"
+                       android:textStyle="bold"
+                       android:textSize="12dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="전체 사용자 중 5위"/>
+
+               </LinearLayout>
+
+           </RelativeLayout>
+
+           <RelativeLayout
+               android:background="@drawable/back_log_box"
+               android:layout_margin="8dp"
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:layout_height="match_parent">
+
+               <LinearLayout
+                   android:gravity="center"
+                   android:layout_marginTop="16dp"
+                   android:layout_centerHorizontal="true"
+                   android:orientation="vertical"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+
+                   <TextView
+                       android:textColor="@color/colorSub"
+                       android:textStyle="bold"
+                       android:textSize="20dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="기여도"/>
+
+                   <TextView
+                       android:id="@+id/contriScore"
+                       android:textColor="@color/colorSub"
+                       android:textStyle="bold"
+                       android:textSize="20dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="31,521점"/>
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_marginBottom="16dp"
+                   android:gravity="center"
+                   android:orientation="vertical"
+                   android:layout_centerHorizontal="true"
+                   android:layout_alignParentBottom="true"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+
+                   <ImageView
+                       android:layout_width="20dp"
+                       android:layout_height="20dp"
+                       android:src="@drawable/ic_star"/>
+
+                   <TextView
+                       android:id="@+id/contriRank"
+                       android:textColor="@color/colorSub"
+                       android:layout_marginTop="4dp"
+                       android:textStyle="bold"
+                       android:textSize="12dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="전체 사용자 중 5위"/>
+
+               </LinearLayout>
+
+           </RelativeLayout>
+
+       </LinearLayout>
+       <LinearLayout
+           android:orientation="horizontal"
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:layout_weight="1">
+
+           <RelativeLayout
+               android:background="@drawable/back_log_box"
+               android:layout_margin="8dp"
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:layout_height="match_parent">
+
+               <LinearLayout
+                   android:gravity="center"
+                   android:layout_marginTop="16dp"
+                   android:layout_centerHorizontal="true"
+                   android:orientation="vertical"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+
+                   <TextView
+                       android:textColor="@color/colorSub"
+                       android:textStyle="bold"
+                       android:textSize="20dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="남긴 댓글"/>
+
+                   <TextView
+                       android:id="@+id/commentScore"
+                       android:textColor="@color/colorSub"
+                       android:textStyle="bold"
+                       android:textSize="20dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="321개"/>
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_marginBottom="16dp"
+                   android:gravity="center"
+                   android:orientation="vertical"
+                   android:layout_centerHorizontal="true"
+                   android:layout_alignParentBottom="true"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+
+                   <ImageView
+                       android:layout_width="20dp"
+                       android:layout_height="20dp"
+                       android:src="@drawable/ic_star"/>
+
+                   <TextView
+                       android:id="@+id/commentRank"
+                       android:textColor="@color/colorSub"
+                       android:layout_marginTop="4dp"
+                       android:textStyle="bold"
+                       android:textSize="12dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="전체 사용자 중 2위"/>
+
+               </LinearLayout>
+
+           </RelativeLayout>
+
+           <RelativeLayout
+               android:background="@color/colorSub"
+               android:layout_margin="8dp"
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:layout_height="match_parent">
+
+               <LinearLayout
+                   android:gravity="center"
+                   android:layout_marginTop="16dp"
+                   android:layout_centerHorizontal="true"
+                   android:orientation="vertical"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+
+                   <TextView
+                       android:textColor="#FFFFFF"
+                       android:textStyle="bold"
+                       android:textSize="20dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="받은 좋아요"/>
+
+                   <TextView
+                       android:id="@+id/likeScore"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="3221개"
+                       android:textColor="#FFFFFF"
+                       android:textSize="20dp"
+                       android:textStyle="bold" />
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_marginBottom="16dp"
+                   android:gravity="center"
+                   android:orientation="vertical"
+                   android:layout_centerHorizontal="true"
+                   android:layout_alignParentBottom="true"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+
+                   <ImageView
+                       android:layout_width="20dp"
+                       android:layout_height="20dp"
+                       android:src="@drawable/ic_star"/>
+
+                   <TextView
+                       android:id="@+id/likeRank"
+                       android:textColor="#FFFFFF"
+                       android:layout_marginTop="4dp"
+                       android:textStyle="bold"
+                       android:textSize="12dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="전체 사용자 중 1위"/>
+
+               </LinearLayout>
+
+           </RelativeLayout>
+
+       </LinearLayout>
+       <LinearLayout
+           android:orientation="horizontal"
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:layout_weight="1">
+
+           <RelativeLayout
+               android:background="@color/colorSub"
+               android:layout_margin="8dp"
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:layout_height="match_parent">
+
+               <LinearLayout
+                   android:gravity="center"
+                   android:layout_marginTop="16dp"
+                   android:layout_centerHorizontal="true"
+                   android:orientation="vertical"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+
+                   <TextView
+                       android:textColor="#FFFFFF"
+                       android:textStyle="bold"
+                       android:textSize="20dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="하루 남긴 댓글"/>
+
+                   <TextView
+                       android:id="@+id/commentOnedayScore"
+                       android:textColor="#FFFFFF"
+                       android:textStyle="bold"
+                       android:textSize="20dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="평균 1.6개"/>
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_marginBottom="16dp"
+                   android:gravity="center"
+                   android:orientation="vertical"
+                   android:layout_centerHorizontal="true"
+                   android:layout_alignParentBottom="true"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+
+                   <ImageView
+                       android:layout_width="20dp"
+                       android:layout_height="20dp"
+                       android:src="@drawable/ic_star"/>
+
+                   <TextView
+                       android:id="@+id/commentOnedayRank"
+                       android:textColor="#FFFFFF"
+                       android:layout_marginTop="4dp"
+                       android:textStyle="bold"
+                       android:textSize="12dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="전체 사용자 중 9위"/>
+
+               </LinearLayout>
+
+           </RelativeLayout>
+
+           <RelativeLayout
+               android:background="@drawable/back_log_box"
+               android:layout_margin="8dp"
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:layout_height="match_parent">
+
+               <LinearLayout
+                   android:gravity="center"
+                   android:layout_marginTop="16dp"
+                   android:layout_centerHorizontal="true"
+                   android:orientation="vertical"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+
+                   <TextView
+                       android:textColor="@color/colorSub"
+                       android:textStyle="bold"
+                       android:textSize="20dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="하루 받은 좋아요"/>
+
+                   <TextView
+                       android:id="@+id/likeOnedayScore"
+                       android:textColor="@color/colorSub"
+                       android:textStyle="bold"
+                       android:textSize="20dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="평균 9.5개"/>
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_marginBottom="16dp"
+                   android:gravity="center"
+                   android:orientation="vertical"
+                   android:layout_centerHorizontal="true"
+                   android:layout_alignParentBottom="true"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+
+                   <ImageView
+                       android:layout_width="20dp"
+                       android:layout_height="20dp"
+                       android:src="@drawable/ic_star"/>
+
+                   <TextView
+                       android:id="@+id/likeOnedayRank"
+                       android:textColor="@color/colorSub"
+                       android:layout_marginTop="4dp"
+                       android:textStyle="bold"
+                       android:textSize="12dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="전체 사용자 중 8위"/>
+
+               </LinearLayout>
+
+           </RelativeLayout>
+
+       </LinearLayout>
+
+   </LinearLayout>
+
+</LinearLayout>
