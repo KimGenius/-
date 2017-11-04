@@ -44,12 +44,12 @@ class MainPage(Resource):
         }, 200
 
 
-class NewsList(Resource):
-    uri = '/news/list'
-
-
-class News(Resource):
-    uri = '/news'
+# class NewsList(Resource):
+#     uri = '/news/list'
+#
+#
+# class News(Resource):
+#     uri = '/news'
 
 
 class Comment(Resource):
@@ -66,10 +66,7 @@ class Comment(Resource):
         user = AccountModel.objects(id=get_jwt_identity()).first()
         user.update(comment_count=user.comment_count + 1)
 
-        news = NewsModel.objects(id=news_id).first()
-        comments = list(news.comments)
-        comments.append(CommentModel(writer=AccountModel.objects(id=get_jwt_identity()).first(), content=content))
-        news.update(comments=comments)
+        CommentModel(news=NewsModel.objects(id=news_id).first(), writer=AccountModel.objects(id=get_jwt_identity()).first(), content=content).save()
 
         return Response('', 201)
 
@@ -78,7 +75,7 @@ class Comment(Resource):
         """
         댓글 리스트 조회
         """
-        news_id = request.form.get('id')
+        news_id = request.args.get('id')
 
         return [{
             'id': str(comment.id),
@@ -86,7 +83,7 @@ class Comment(Resource):
             'content': comment.content,
             'like_count': len(list(comment.liked_users)),
             'liked': get_jwt_identity() in list(comment.liked_users)
-        } for comment in NewsModel.objects(id=news_id).first.comments]
+        } for comment in CommentModel.objects(news=NewsModel.objects(id=news_id).first())]
 
 
 class Like(Resource):
@@ -97,20 +94,16 @@ class Like(Resource):
         """
         좋아요
         """
-        news_id = request.form.get('news_id')
-        comment_id = request.form.get('comment_id')
+        comment_id = request.form.get('id')
 
-        news = NewsModel.objects(id=news_id).first()
+        comment = CommentModel.objects(id=comment_id).first()
 
-        for idx, comment in enumerate(news.comments):
-            # Iterate comments
-            if comment_id == str(comment.id):
-                liked_users = list(comment.liked_users)
-                liked_users.append(get_jwt_identity())
-                news.comments[idx].update(liked_users=liked_users)
+        liked_users = list(comment.liked_users)
+        liked_users.append(get_jwt_identity())
+        comment.update(liked_users=liked_users)
 
-                comment_writer = comment.writer
-                comment_writer.update(received_like_count=comment_writer.received_like_count + 1)
+        comment_writer = comment.writer
+        comment_writer.update(received_like_count=comment_writer.received_like_count + 1)
 
         return Response('', 201)
 
@@ -119,17 +112,15 @@ class Like(Resource):
         """
         좋아요 취소
         """
-        news_id = request.form.get('news_id')
-        comment_id = request.form.get('comment_id')
+        comment_id = request.form.get('id')
 
-        news = NewsModel.objects(id=news_id).first()
+        comment = CommentModel.objects(id=comment_id).first()
 
-        for idx, comment in enumerate(news.comments):
-            # Iterate comments
-            if comment_id == str(comment.id):
-                liked_users = list(comment.liked_users)
-                liked_users.remove(get_jwt_identity())
-                news.comments[idx].update(liked_users=liked_users)
+        liked_users = list(comment.liked_users)
+        liked_users.remove(get_jwt_identity())
+        comment.update(liked_users=liked_users)
 
-                comment_writer = comment.writer
-                comment_writer.update(received_like_count=comment_writer.received_like_count - 1)
+        comment_writer = comment.writer
+        comment_writer.update(received_like_count=comment_writer.received_like_count - 1)
+
+        return Response('', 200)
