@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 import re
 
@@ -14,8 +15,46 @@ _HEADERS = {
 
 _API_BASE = 'https://openapi.naver.com/v1/search/news.json?query=트럼프&display=100'
 
+_WEEKDAYS = {
+    'Mon': 0,
+    'Tue': 1,
+    'Wed': 2,
+    'Thu': 3,
+    'Fri': 4,
+    'Sat': 5,
+    'Sun': 6
+}
+
+_MONTHS = {
+    'Jan': 1,
+    'Feb': 2,
+    'Mar': 3,
+    'Apr': 4,
+    'May': 5,
+    'Jun': 6,
+    'Jul': 7,
+    'Aug': 8,
+    'Sep': 9,
+    'Oct': 10,
+    'Nov': 11,
+    'Dec': 12
+}
+
+
+def _extract_datetime(str_date):
+    year = int(str_date[12:16])
+    month = _MONTHS[str_date[8:11]]
+    day = int(str_date[5:7])
+    hour = int(str_date[17:19])
+    minute = int(str_date[20:22])
+    second = int(str_date[23:25])
+
+    return datetime(year, month, day, hour, minute, second)
+
 
 def parse():
+    NewsModel.drop_collection()
+
     for start in range(100, 1001, 100):
         if start == 0:
             resp = json.loads(get(_API_BASE, headers=_HEADERS).text)
@@ -38,6 +77,8 @@ def parse():
             title = item['title'].replace('<b>', '').replace('</b>', '').replace('&quot;', "'")
             description = item['description'].replace('<b>', '').replace('</b>', '').replace('&quot;', "'")
             link = item['link']
-            pub_date = item['pubDate']
+            pub_date = _extract_datetime(item['pubDate'])
+
+            print('{0} done.'.format(item['title']))
 
             NewsModel(title=title, description=description, link=link, pub_date=pub_date).save()
