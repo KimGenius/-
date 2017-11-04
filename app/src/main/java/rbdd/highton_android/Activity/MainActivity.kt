@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import android.util.Log
 import com.facebook.CallbackManager
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.view_content_main.*
 import rbdd.highton_android.Fragment.MainFragement
 import rbdd.highton_android.Manager.GoogleSignInManager
 import rbdd.highton_android.R
@@ -27,14 +26,20 @@ class MainActivity : BaseActivity() {
         GlideUtil.setGliding(this, R.drawable.ic_home_on, homeBtn)
         GlideUtil.setGliding(this, R.drawable.ic_list_off, listBtn)
 
-        viewPager.adapter = MainPagerAdapter(supportFragmentManager)
+        mainPager.adapter = MainPagerAdapter(supportFragmentManager, this)
 
     }
 
-    class MainPagerAdapter(val fm: FragmentManager): FragmentStatePagerAdapter(fm){
+    class MainPagerAdapter(fm: FragmentManager, activity: BaseActivity): FragmentStatePagerAdapter(fm){
+
+        lateinit var activity: BaseActivity
+
+        init {
+            this.activity = activity
+        }
 
         override fun getItem(position: Int): Fragment {
-            return MainFragement()
+            return MainFragement(activity)
         }
 
         override fun getCount(): Int {
