@@ -4,6 +4,7 @@ import com.google.gson.JsonObject
 import rbdd.highton_android.Model.CommnetModel
 import rbdd.highton_android.Model.ContentBannerModel
 import rbdd.highton_android.Model.ContentNewsModel
+import rbdd.highton_android.Model.Login
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -14,7 +15,7 @@ interface Api {
 
     @POST("/auth/basic")
     @FormUrlEncoded
-    fun authBasic(@Field("id")id: String, @Field("pw")pw: String): Call<JsonObject>
+    fun authBasic(@Field("id")id: String, @Field("pw")pw: String): Call<Login>
 
     @POST("/auth/facebook")
     @FormUrlEncoded
