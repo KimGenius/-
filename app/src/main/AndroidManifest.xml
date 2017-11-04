@@ -8,8 +8,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+<<<<<<< HEAD
         android:theme="@style/AppTheme">
         <activity android:name=".Activity.NavigationActivity">
+=======
+        android:theme="@style/NoActionAppTheme">
+        <activity android:name=".Activity.MainActivity">
+>>>>>>> 6fd82f8ed99040fa6b89a6adf6ea11a2ccf591e6
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
