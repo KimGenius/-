@@ -1,12 +1,14 @@
 from flask import Response
 from flask_restful_swagger_2 import Resource, request, swagger
 
+from api.user import signup_doc
 from db.models.account import AccountModel
 
 
 class EmailCheck(Resource):
     uri = '/check/email'
 
+    @swagger.doc(signup_doc.EMAIL_CHECK_POST)
     def post(self):
         email = request.form.get('email')
 
@@ -21,6 +23,7 @@ class EmailCheck(Resource):
 class IDCheck(Resource):
     uri = '/check/id'
 
+    @swagger.doc(signup_doc.ID_CHECK_POST)
     def post(self):
         id = request.form.get('id')
 
@@ -35,6 +38,7 @@ class IDCheck(Resource):
 class Signup(Resource):
     uri = '/signup'
 
+    @swagger.doc(signup_doc.SIGNUP_POST)
     def post(self):
         id = request.form.get('id')
         pw = request.form.get('pw')
