@@ -1,6 +1,8 @@
 package rbdd.highton_android.Util
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 
@@ -23,5 +25,21 @@ public open class BaseActivity: AppCompatActivity() {
         if (finish){
             finish()
         }
+    }
+
+    public fun getPref(): SharedPreferences{
+        val pref = getSharedPreferences("pref", Context.MODE_PRIVATE)
+        return pref
+    }
+
+    public fun saveCookie(cookie: String){
+        val editor = getPref().edit()
+        editor.remove("cookie")
+        editor.putString("cookie", cookie)
+        editor.commit()
+    }
+
+    public fun getCookie(): String{
+        return getPref().getString("cookie", "")
     }
 }
