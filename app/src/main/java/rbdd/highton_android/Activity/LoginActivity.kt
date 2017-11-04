@@ -5,12 +5,10 @@ import android.os.Bundle
 import android.util.Log
 import com.facebook.CallbackManager
 import kotlinx.android.synthetic.main.activity_login.*
-import rbdd.highton_android.Connect.Connector
 import rbdd.highton_android.Manager.FacebookSignInManager
 import rbdd.highton_android.Manager.GoogleSignInManager
 import rbdd.highton_android.R
 import rbdd.highton_android.Util.BaseActivity
-import retrofit2.Callback
 
 /**
  * Created by root1 on 2017. 11. 5..
@@ -24,12 +22,13 @@ class LoginActivity: BaseActivity() {
         setBtn()
 
     }
+
     private fun setBtn() {
-        loginBtn.setOnClickListener {
-            Connector.api.authBasic(idEdit.text.toString(),pwEdit.text.toString()).enqueue(object: Callback<Void>{
-                
-            })
-        }
+//        loginBtn.setOnClickListener {
+//            Connector.api.authBasic(idEdit.text.toString(),pwEdit.text.toString()).enqueue(object: Callback<Void>{
+//
+//            })
+//        }
 
         val facebookSignin = FacebookSignInManager()
         faceCall = CallbackManager.Factory.create()
@@ -38,6 +37,7 @@ class LoginActivity: BaseActivity() {
             googleSignIn = GoogleSignInManager(this@LoginActivity)
         }
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         Log.d("req", requestCode.toString())
         when (requestCode) {

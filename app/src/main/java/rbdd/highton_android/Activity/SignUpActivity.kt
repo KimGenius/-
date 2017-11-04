@@ -21,11 +21,7 @@ class SignUpActivity : BaseActivity() {
             if(isEmpty(idEdit) || isEmpty(passwordEdit) || isEmpty(nameEdit)){
                 showToast("값을 다 입력하세요")
             }else{
-<<<<<<< HEAD
-                Connector.api.signup(getStr(idEdit), getStr(passwordEdit), "" ,getStr(nameEdit))
-=======
                 Connector.api.signup(getStr(idEdit), getStr(passwordEdit), "hello wolrd",getStr(nameEdit))
->>>>>>> 7ee540a3090262315aed322e11ea6848a21e8d2e
                         .enqueue(object : Responce<Void>{
                             override fun onCall(code: Int, body: Void?) {
                                 when(code){
