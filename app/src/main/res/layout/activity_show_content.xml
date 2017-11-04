@@ -35,7 +35,42 @@
         </LinearLayout>
     </Toolbar>
     <ImageView
+        android:elevation="4dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_launcher_background"
         android:layout_width="match_parent"
         android:layout_height="150dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+
+    </ScrollView>
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@color/colorMain"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <Button
+            android:background="@drawable/back_content_button_like"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 </LinearLayout>
