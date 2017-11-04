@@ -5,6 +5,7 @@ from flask_jwt_extended import get_jwt_identity, jwt_required
 from flask_restful_swagger_2 import Resource, request, swagger
 
 from api.news import news_doc
+from db.models.user import AccountModel
 from db.models.news import NewsModel, Comment
 
 
@@ -41,3 +42,66 @@ class MainPage(Resource):
             'hot_issue': sorted(hot_issue, key=lambda k: k['like_count'], reverse=True)[:11],
             'today_trump': sorted(today_trump, key=lambda k: k['like_count'], reverse=True)[:11]
         }, 200
+
+
+class NewsList(Resource):
+    uri = '/news/list'
+
+
+class News(Resource):
+    uri = '/news'
+
+
+class Comment(Resource):
+    uri = '/news/comment'
+
+    @jwt_required
+    def post(self):
+        """
+        의견 업로드
+        """
+        news_id = request.form.get('id')
+        content = request.form.get('content')
+
+        user = AccountModel.objects(id=get_jwt_identity()).first()
+        user.update(comment_count=user.comment_count + 1)
+
+        news = NewsModel.objects(id=news_id).first()
+        comments = list(news.comments)
+        comments.append(Comment(writer=AccountModel.objects(id=get_jwt_identity()).first(), content=content))
+        news.update(comments=comments)
+
+        return Response('', 201)
+
+    @jwt_required
+    def get(self):
+        """
+        의견 리스트 조회
+        """
+        news_id = request.form.get('id')
+
+        return [{
+            'id': str(comment.id),
+            'writer': comment.writer.name,
+            'content': comment.content,
+            'like_count': len(list(comment.liked_users)),
+            'liked': get_jwt_identity() in list(comment.liked_users)
+        } for comment in NewsModel.objects(id=news_id).first.comments]
+
+
+class Like(Resource):
+    uri = '/news/comment/like'
+
+    @jwt_required
+    def post(self):
+        """
+        좋아요
+        """
+        # received like count 늘려줘야 함
+
+    @jwt_required
+    def delete(self):
+        """
+        좋아요 취소
+        """
+        # received like count 내려줘야 함
