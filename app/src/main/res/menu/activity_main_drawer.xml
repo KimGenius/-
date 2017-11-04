@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/alimBtn"
+            android:icon="@drawable/ic_recent_alerts"
+            android:title="최근 알림" />
+        <item
+            android:id="@+id/logBtn"
+            android:icon="@drawable/ic_record"
+            android:title="활동 기록" />
+        <item
+            android:id="@+id/pwChange"
+            android:icon="@drawable/ic_change_password"
+            android:title="비밀번호 변경" />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_log_out"
+            android:title="로그아웃" />
+        <item
+            android:id="@+id/signDelete"
+            android:icon="@drawable/ic_withdrawal"
+            android:title="회원탈퇴" />
+    </group>
+
+</menu>

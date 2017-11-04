@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_list.view.*
 import rbdd.highton_android.Adapter.ListAdapter
+import rbdd.highton_android.Connect.Connector
+import rbdd.highton_android.Connect.Responce
+import rbdd.highton_android.Model.ContentBannerModel
 import rbdd.highton_android.R
 
 /**
@@ -14,13 +17,23 @@ import rbdd.highton_android.R
  */
 
 
-class ListFragement(): Fragment() {
+class ListFragement: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater!!.inflate(R.layout.fragment_list, container, false)
-        with(view){
-            recyclerView.adapter = ListAdapter()
-        }
+
+        Connector.api.getListNews(0)
+                .enqueue(object : Responce<Array<ContentBannerModel>>{
+                    override fun onCall(code: Int, body: Array<ContentBannerModel>?) {
+                        if(code == 200){
+                            with(view){
+                                recyclerView.adapter = ListAdapter(body!!)
+                            }
+                        }
+                    }
+                })
+
+
         return view
     }
 

@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.PagerAdapter
+import android.util.Log
 import rbdd.highton_android.Fragment.MainContentBannerFragment
 import rbdd.highton_android.Model.ContentBannerModel
 
@@ -12,9 +13,10 @@ import rbdd.highton_android.Model.ContentBannerModel
  */
 class HotFragmentAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm) {
 
-    var data = listOf<ContentBannerModel>()
+    var data = emptyArray<ContentBannerModel>()
 
     override fun getItem(position: Int): Fragment {
+        Log.d("pos", "" + position)
         val fragment = MainContentBannerFragment()
         fragment.bind(data.get(position))
         return fragment
@@ -24,7 +26,7 @@ class HotFragmentAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm) {
         return data.size
     }
 
-    fun bind(data: MutableList<Array<ContentBannerModel>>){
+    fun bind(data: Array<ContentBannerModel>){
         this.data = data
         notifyDataSetChanged()
     }
@@ -37,10 +39,10 @@ class HotFragmentAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm) {
 
 class TodayFragmentAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm) {
 
-    var data = listOf<ContentBannerModel>()
+    var data = emptyArray<ContentBannerModel>()
 
     override fun getItem(position: Int): Fragment {
-        val fragment = MainContentBannerFragment()
+        var fragment = MainContentBannerFragment()
         fragment.bind(data.get(position))
         return fragment
     }
@@ -49,7 +51,7 @@ class TodayFragmentAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm) {
         return data.size
     }
 
-    fun bind(data: MutableList<Array<ContentBannerModel>>){
+    fun bind(data: Array<ContentBannerModel>){
         this.data = data
         notifyDataSetChanged()
     }

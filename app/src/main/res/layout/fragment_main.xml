@@ -22,7 +22,7 @@
 
         <TextView
             android:layout_marginLeft="16dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="4dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="가장 핫한 트럼프 정보입니다."
@@ -32,7 +32,7 @@
             android:id="@+id/hotViewPager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="4dp"
             android:layout_weight="1"/>
 
     </LinearLayout>

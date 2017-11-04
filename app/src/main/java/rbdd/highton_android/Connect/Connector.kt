@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object Connector {
 
     lateinit var api: Api
-    val baseUrl = ""
+    val baseUrl = "http://52.79.134.200:3002/"
 
 
     init {

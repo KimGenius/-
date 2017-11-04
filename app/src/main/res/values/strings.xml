@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">highton_android</string>
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">close</string>
     <string name="facebook_app_id">945428712262139</string>
     <string name="fb_login_protocol_scheme">fb945428712262139</string>
 </resources>

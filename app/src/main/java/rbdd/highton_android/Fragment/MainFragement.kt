@@ -16,7 +16,6 @@ import rbdd.highton_android.Connect.Connector
 import rbdd.highton_android.Connect.Responce
 import rbdd.highton_android.Model.ContentBannerModel
 import rbdd.highton_android.R
-import java.util.*
 
 /**
  * Created by root1 on 2017. 11. 5..
@@ -36,11 +35,6 @@ class MainFragement(fm: FragmentManager): Fragment() {
         val hotAdapter = HotFragmentAdapter(fm)
         val todayAdapter = TodayFragmentAdapter(fm)
 
-        with(view){
-            hotViewPager.adapter = hotAdapter
-            todayViewPager.adapter = todayAdapter
-        }
-
         Connector.api.getMainNews()
                 .enqueue(object : Responce<JsonObject>{
                     override fun onCall(code: Int, body: JsonObject?) {
@@ -50,11 +44,16 @@ class MainFragement(fm: FragmentManager): Fragment() {
 
                             val gson = Gson()
 
-                            val hotList = Arrays.asList(gson.fromJson(hotData, Array<ContentBannerModel>::class.java))
-                            val todayList = Arrays.asList(gson.fromJson(todayData, Array<ContentBannerModel>::class.java))
+                            val hotArr = gson.fromJson(hotData, Array<ContentBannerModel>::class.java)
+                            val todayArr = gson.fromJson(todayData, Array<ContentBannerModel>::class.java)
 
-                            hotAdapter.bind(hotList)
-                            todayAdapter.bind(todayList)
+                            hotAdapter.bind(hotArr)
+                            todayAdapter.bind(todayArr)
+
+                            with(view){
+                                hotViewPager.adapter = hotAdapter
+                                todayViewPager.adapter = todayAdapter
+                            }
 
                         }
                     }
