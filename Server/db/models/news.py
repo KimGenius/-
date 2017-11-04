@@ -8,7 +8,7 @@ class Comment(EmbeddedDocument):
     id = ObjectIdField(primary_key=True, default=ObjectId())
     writer = ReferenceField(AccountModel, required=True)
     content = StringField(required=True)
-    like_count = IntField(required=True, default=0)
+    liked_users = ListField(required=True, default=[])
 
 
 class NewsModel(Document):
