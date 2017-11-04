@@ -17,6 +17,7 @@
             android:layout_height="match_parent">
 
             <ImageButton
+                android:id="@+id/backBtn"
                 android:src="@drawable/ic_back"
                 android:scaleType="centerCrop"
                 android:background="@android:color/transparent"
@@ -26,12 +27,12 @@
                 android:layout_height="32dp" />
 
             <TextView
-                android:textColor="@color/colorMain"
+                android:textColor="@color/colorSub"
                 android:textStyle="bold"
                 android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="활동로그"/>
+                android:text="활동 기록"/>
         </LinearLayout>
     </Toolbar>
 
@@ -49,7 +50,8 @@
            android:layout_weight="1">
 
            <RelativeLayout
-               android:background="@color/colorMain"
+               android:id="@+id/logWrap"
+               android:background="@color/colorSub"
                android:layout_margin="8dp"
                android:layout_width="0dp"
                android:layout_weight="1"
@@ -72,6 +74,7 @@
                        android:text="가입한지"/>
 
                    <TextView
+                       android:id="@+id/signupDay"
                        android:textColor="#FFFFFF"
                        android:textStyle="bold"
                        android:textSize="20dp"
@@ -96,13 +99,14 @@
                        android:src="@drawable/ic_star"/>
 
                    <TextView
+                       android:id="@+id/signupRank"
                        android:textColor="#FFFFFF"
                        android:layout_marginTop="4dp"
                        android:textStyle="bold"
                        android:textSize="12dp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="전체 사용자 중"/>
+                       android:text="전체 사용자 중 5위"/>
 
                </LinearLayout>
 
@@ -124,20 +128,21 @@
                    android:layout_height="wrap_content">
 
                    <TextView
-                       android:textColor="@color/colorMain"
+                       android:textColor="@color/colorSub"
                        android:textStyle="bold"
                        android:textSize="20dp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="가입한지"/>
+                       android:text="기여도"/>
 
                    <TextView
-                       android:textColor="@color/colorMain"
+                       android:id="@+id/contriScore"
+                       android:textColor="@color/colorSub"
                        android:textStyle="bold"
                        android:textSize="20dp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="42일"/>
+                       android:text="31,521점"/>
 
                </LinearLayout>
 
@@ -156,13 +161,14 @@
                        android:src="@drawable/ic_star"/>
 
                    <TextView
-                       android:textColor="@color/colorMain"
+                       android:id="@+id/contriRank"
+                       android:textColor="@color/colorSub"
                        android:layout_marginTop="4dp"
                        android:textStyle="bold"
                        android:textSize="12dp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="전체 사용자 중"/>
+                       android:text="전체 사용자 중 5위"/>
 
                </LinearLayout>
 
@@ -191,20 +197,21 @@
                    android:layout_height="wrap_content">
 
                    <TextView
-                       android:textColor="@color/colorMain"
+                       android:textColor="@color/colorSub"
                        android:textStyle="bold"
                        android:textSize="20dp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="가입한지"/>
+                       android:text="남긴 댓글"/>
 
                    <TextView
-                       android:textColor="@color/colorMain"
+                       android:id="@+id/commentScore"
+                       android:textColor="@color/colorSub"
                        android:textStyle="bold"
                        android:textSize="20dp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="42일"/>
+                       android:text="321개"/>
 
                </LinearLayout>
 
@@ -223,20 +230,21 @@
                        android:src="@drawable/ic_star"/>
 
                    <TextView
-                       android:textColor="@color/colorMain"
+                       android:id="@+id/commentRank"
+                       android:textColor="@color/colorSub"
                        android:layout_marginTop="4dp"
                        android:textStyle="bold"
                        android:textSize="12dp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="전체 사용자 중"/>
+                       android:text="전체 사용자 중 2위"/>
 
                </LinearLayout>
 
            </RelativeLayout>
 
            <RelativeLayout
-               android:background="@color/colorMain"
+               android:background="@color/colorSub"
                android:layout_margin="8dp"
                android:layout_width="0dp"
                android:layout_weight="1"
@@ -256,15 +264,16 @@
                        android:textSize="20dp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="가입한지"/>
+                       android:text="받은 좋아요"/>
 
                    <TextView
-                       android:textColor="#FFFFFF"
-                       android:textStyle="bold"
-                       android:textSize="20dp"
+                       android:id="@+id/likeScore"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="42일"/>
+                       android:text="3221개"
+                       android:textColor="#FFFFFF"
+                       android:textSize="20dp"
+                       android:textStyle="bold" />
 
                </LinearLayout>
 
@@ -283,13 +292,14 @@
                        android:src="@drawable/ic_star"/>
 
                    <TextView
+                       android:id="@+id/likeRank"
                        android:textColor="#FFFFFF"
                        android:layout_marginTop="4dp"
                        android:textStyle="bold"
                        android:textSize="12dp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="전체 사용자 중"/>
+                       android:text="전체 사용자 중 1위"/>
 
                </LinearLayout>
 
@@ -303,7 +313,7 @@
            android:layout_weight="1">
 
            <RelativeLayout
-               android:background="@color/colorMain"
+               android:background="@color/colorSub"
                android:layout_margin="8dp"
                android:layout_width="0dp"
                android:layout_weight="1"
@@ -323,15 +333,16 @@
                        android:textSize="20dp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="가입한지"/>
+                       android:text="하루 남긴 댓글"/>
 
                    <TextView
+                       android:id="@+id/commentOnedayScore"
                        android:textColor="#FFFFFF"
                        android:textStyle="bold"
                        android:textSize="20dp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="42일"/>
+                       android:text="평균 1.6개"/>
 
                </LinearLayout>
 
@@ -350,13 +361,14 @@
                        android:src="@drawable/ic_star"/>
 
                    <TextView
+                       android:id="@+id/commentOnedayRank"
                        android:textColor="#FFFFFF"
                        android:layout_marginTop="4dp"
                        android:textStyle="bold"
                        android:textSize="12dp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="전체 사용자 중"/>
+                       android:text="전체 사용자 중 9위"/>
 
                </LinearLayout>
 
@@ -378,20 +390,21 @@
                    android:layout_height="wrap_content">
 
                    <TextView
-                       android:textColor="@color/colorMain"
+                       android:textColor="@color/colorSub"
                        android:textStyle="bold"
                        android:textSize="20dp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="가입한지"/>
+                       android:text="하루 받은 좋아요"/>
 
                    <TextView
-                       android:textColor="@color/colorMain"
+                       android:id="@+id/likeOnedayScore"
+                       android:textColor="@color/colorSub"
                        android:textStyle="bold"
                        android:textSize="20dp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="42일"/>
+                       android:text="평균 9.5개"/>
 
                </LinearLayout>
 
@@ -410,7 +423,8 @@
                        android:src="@drawable/ic_star"/>
 
                    <TextView
-                       android:textColor="@color/colorMain"
+                       android:id="@+id/likeOnedayRank"
+                       android:textColor="@color/colorSub"
                        android:layout_marginTop="4dp"
                        android:textStyle="bold"
                        android:textSize="12dp"
