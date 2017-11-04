@@ -26,24 +26,18 @@ class MainActivity : BaseActivity() {
         GlideUtil.setGliding(this, R.drawable.ic_home_on, homeBtn)
         GlideUtil.setGliding(this, R.drawable.ic_list_off, listBtn)
 
-        mainPager.adapter = MainPagerAdapter(supportFragmentManager, this)
+        mainPager.adapter = MainPagerAdapter(supportFragmentManager)
 
     }
 
-    class MainPagerAdapter(fm: FragmentManager, activity: BaseActivity): FragmentStatePagerAdapter(fm){
-
-        lateinit var activity: BaseActivity
-
-        init {
-            this.activity = activity
-        }
+    class MainPagerAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm){
 
         override fun getItem(position: Int): Fragment {
-            return MainFragement(activity)
+            return MainFragement()
         }
 
         override fun getCount(): Int {
-            return 10
+            return 4
         }
 
     }
