@@ -14,10 +14,9 @@
         android:background="#fff">
 
         <ImageView
-            android:id="@+id/NavigationBarImg"
+            android:id="@+id/navigationBarImg"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/ic_nav_drawer"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.05"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -53,9 +52,9 @@
         android:background="#7579ff">
 
         <ImageView
+            android:id="@+id/homeBtn"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@drawable/ic_home_on"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -64,9 +63,9 @@
             app:layout_constraintVertical_bias="0.5" />
 
         <ImageView
+            android:id="@+id/listBtn"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@drawable/ic_list_off"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.75"
             app:layout_constraintLeft_toLeftOf="parent"
