@@ -51,4 +51,12 @@ interface Api {
     @DELETE("/news/comment/like")
     @FormUrlEncoded
     fun removeLike(@Header("Authorization")token: String, @Field("id")id: String): Call<Void>
+
+    @DELETE("/news/like")
+    @FormUrlEncoded
+    fun removeNewsLike(@Header("Authorization")token: String, @Field("id")id: String) : Call<Void>
+
+    @POST("/news/like")
+    @FormUrlEncoded
+    fun addNewsLike(@Header("Authorization")token: String, @Field("id")id: String) : Call<Void>
 }
