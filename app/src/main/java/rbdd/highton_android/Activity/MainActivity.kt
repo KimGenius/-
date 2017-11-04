@@ -24,28 +24,28 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        googleSign.setOnClickListener {
-            googleSignIn = GoogleSignInManager(MainActivity@ this)
-        }
-
-        callbackManager = CallbackManager.Factory.create()
-//        loginButton.setReadPermissions("email", "public_profile", "user_friends")
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"))
-        loginButton.setReadPermissions("email")
-        loginButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
-            override fun onSuccess(result: LoginResult?) {
-                Log.d("facebook", result.toString())
-                Log.d("facebook", result!!.accessToken.token)
-            }
-
-            override fun onError(error: FacebookException?) {
-                Log.d("facebookError", error.toString())
-            }
-
-            override fun onCancel() {
-                showToast("취소;")
-            }
-        })
+//        googleSign.setOnClickListener {
+//            googleSignIn = GoogleSignInManager(MainActivity@ this)
+//        }
+//
+//        callbackManager = CallbackManager.Factory.create()
+////        loginButton.setReadPermissions("email", "public_profile", "user_friends")
+//        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"))
+//        loginButton.setReadPermissions("email")
+//        loginButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+//            override fun onSuccess(result: LoginResult?) {
+//                Log.d("facebook", result.toString())
+//                Log.d("facebook", result!!.accessToken.token)
+//            }
+//
+//            override fun onError(error: FacebookException?) {
+//                Log.d("facebookError", error.toString())
+//            }
+//
+//            override fun onCancel() {
+//                showToast("취소;")
+//            }
+//        })
 
 
     }
