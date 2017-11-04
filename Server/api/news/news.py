@@ -44,12 +44,48 @@ class MainPage(Resource):
         }, 200
 
 
-# class NewsList(Resource):
-#     uri = '/news/list'
-#
-#
-# class News(Resource):
-#     uri = '/news'
+class NewsList(Resource):
+    uri = '/news/list'
+
+    def get(self):
+        """
+        뉴스 리스트
+        """
+        page = request.args.get('page', type=int)
+
+        news = NewsModel.objects
+
+        if not news:
+            return Response('', 204)
+
+        news = [{
+            'id': str(item.id),
+            'title': item.title,
+            'description': item.description,
+            'like_count': item.like_count,
+            'unlike_count': item.unlike_count
+        } for item in news][(page - 1) * 8: page * 8]
+
+        return sorted(news, key=lambda k: k['like_count'], reverse=True)[(page - 1) * 8: page * 8], 200
+
+
+class News(Resource):
+    uri = '/news'
+
+    def get(self):
+        """
+        뉴스 Detail
+        """
+        news_id = request.args.get('id')
+
+        news = NewsModel.objects(id=news_id).first()
+
+        return {
+            'title': news.title,
+            'content': news.content,
+            'link': news.link,
+            'pub_date': str(news.pub_date)
+        }, 200
 
 
 class Comment(Resource):
