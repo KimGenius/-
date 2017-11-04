@@ -102,18 +102,4 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
 
     }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        Log.d("req", requestCode.toString())
-        when (requestCode) {
-            GOOGLESIGNINCODE -> {
-                val account = googleSignIn.googleSignInResult(data!!)
-                showToast("" + account?.displayName)
-            }
-            FACEBOOKSIGNCODE -> {
-                super.onActivityResult(requestCode, resultCode, data)
-                callbackManager.onActivityResult(requestCode, resultCode, data)
-            }
-        }
-    }
 }
