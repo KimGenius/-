@@ -81,4 +81,4 @@ def parse():
 
             print('{0} done.'.format(item['title']))
 
-            NewsModel(title=title, description=description, link=link, pub_date=pub_date).save()
+            NewsModel(title=title, description=description, content=content, link=link, pub_date=pub_date).save()
