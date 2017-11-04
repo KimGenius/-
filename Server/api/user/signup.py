@@ -25,3 +25,15 @@ class IDCheck(Resource):
 class Signup(Resource):
     uri = '/signup'
 
+    def post(self):
+        id = request.form.get('id')
+        pw = request.form.get('pw')
+        email = request.form.get('email')
+        name = request.form.get('name')
+
+        if AccountModel.objects(id=id):
+            return Response('', 204)
+
+        AccountModel(id=id, pw=pw, email=email, name=name).save()
+
+        return Response('', 201)
