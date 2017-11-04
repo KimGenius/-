@@ -9,6 +9,7 @@ import android.widget.Toast
 public open class BaseActivity: AppCompatActivity() {
 
     public val GOOGLESIGNINCODE = 900
+    public val FACEBOOKSIGNCODE = 64206
 
     public fun showToast(msg: String){
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()

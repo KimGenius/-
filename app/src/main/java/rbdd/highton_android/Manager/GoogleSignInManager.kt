@@ -35,6 +35,8 @@ class GoogleSignInManager(activity: BaseActivity) {
         val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
         Log.e("account", result.signInAccount?.displayName + result.signInAccount?.email)
 
+        Log.e("Xxx", "" + result.status + result.isSuccess)
+
         return result.signInAccount
 
     }
