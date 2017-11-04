@@ -1,5 +1,6 @@
 package rbdd.highton_android.Util
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 
@@ -13,5 +14,14 @@ public open class BaseActivity: AppCompatActivity() {
 
     public fun showToast(msg: String){
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    public fun goNextActivity(clazz: Class<*>, finish: Boolean){
+        val intent = Intent(this, clazz)
+        startActivity(intent)
+
+        if (finish){
+            finish()
+        }
     }
 }
