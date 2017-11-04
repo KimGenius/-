@@ -6,7 +6,7 @@ from flask_restful_swagger_2 import Resource, request, swagger
 
 from api.news import news_doc
 from db.models.user import AccountModel
-from db.models.news import NewsModel, Comment
+from db.models.news import NewsModel, CommentModel
 
 
 class MainPage(Resource):
@@ -58,7 +58,7 @@ class Comment(Resource):
     @jwt_required
     def post(self):
         """
-        의견 업로드
+        댓글 업로드
         """
         news_id = request.form.get('id')
         content = request.form.get('content')
@@ -68,7 +68,7 @@ class Comment(Resource):
 
         news = NewsModel.objects(id=news_id).first()
         comments = list(news.comments)
-        comments.append(Comment(writer=AccountModel.objects(id=get_jwt_identity()).first(), content=content))
+        comments.append(CommentModel(writer=AccountModel.objects(id=get_jwt_identity()).first(), content=content))
         news.update(comments=comments)
 
         return Response('', 201)
@@ -76,7 +76,7 @@ class Comment(Resource):
     @jwt_required
     def get(self):
         """
-        의견 리스트 조회
+        댓글 리스트 조회
         """
         news_id = request.form.get('id')
 
@@ -97,11 +97,39 @@ class Like(Resource):
         """
         좋아요
         """
-        # received like count 늘려줘야 함
+        news_id = request.form.get('news_id')
+        comment_id = request.form.get('comment_id')
+
+        news = NewsModel.objects(id=news_id).first()
+
+        for idx, comment in enumerate(news.comments):
+            # Iterate comments
+            if comment_id == str(comment.id):
+                liked_users = list(comment.liked_users)
+                liked_users.append(get_jwt_identity())
+                news.comments[idx].update(liked_users=liked_users)
+
+                comment_writer = comment.writer
+                comment_writer.update(received_like_count=comment_writer.received_like_count + 1)
+
+        return Response('', 201)
 
     @jwt_required
     def delete(self):
         """
         좋아요 취소
         """
-        # received like count 내려줘야 함
+        news_id = request.form.get('news_id')
+        comment_id = request.form.get('comment_id')
+
+        news = NewsModel.objects(id=news_id).first()
+
+        for idx, comment in enumerate(news.comments):
+            # Iterate comments
+            if comment_id == str(comment.id):
+                liked_users = list(comment.liked_users)
+                liked_users.remove(get_jwt_identity())
+                news.comments[idx].update(liked_users=liked_users)
+
+                comment_writer = comment.writer
+                comment_writer.update(received_like_count=comment_writer.received_like_count - 1)

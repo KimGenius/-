@@ -4,7 +4,7 @@ from db.mongo import *
 from db.models.user import AccountModel
 
 
-class Comment(EmbeddedDocument):
+class CommentModel(EmbeddedDocument):
     id = ObjectIdField(primary_key=True, default=ObjectId())
     writer = ReferenceField(AccountModel, required=True)
     content = StringField(required=True)
@@ -19,4 +19,4 @@ class NewsModel(Document):
     like_count = IntField(required=True, default=0)
     unlike_count = IntField(required=True, default=0)
 
-    comments = ListField(EmbeddedDocumentField(Comment), default=[])
+    comments = ListField(EmbeddedDocumentField(CommentModel), default=[])
