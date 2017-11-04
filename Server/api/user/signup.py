@@ -2,7 +2,7 @@ from flask import Response
 from flask_restful_swagger_2 import Resource, request, swagger
 
 from api.user import signup_doc
-from db.models.account import AccountModel
+from db.models.user import AccountModel
 
 
 class EmailCheck(Resource):
@@ -10,6 +10,9 @@ class EmailCheck(Resource):
 
     @swagger.doc(signup_doc.EMAIL_CHECK_POST)
     def post(self):
+        """
+        이메일 중복체크
+        """
         email = request.form.get('email')
 
         if AccountModel.objects(email=email):
@@ -25,6 +28,9 @@ class IDCheck(Resource):
 
     @swagger.doc(signup_doc.ID_CHECK_POST)
     def post(self):
+        """
+        ID 중복체크
+        """
         id = request.form.get('id')
 
         if AccountModel.objects(id=id):
@@ -40,6 +46,9 @@ class Signup(Resource):
 
     @swagger.doc(signup_doc.SIGNUP_POST)
     def post(self):
+        """
+        회원가입
+        """
         id = request.form.get('id')
         pw = request.form.get('pw')
         email = request.form.get('email')
