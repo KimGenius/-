@@ -22,7 +22,7 @@ class FacebookSignInManager {
         loginButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult?) {
                 Log.d("facebook", result.toString())
-                Log.d("facebook", result!!.accessToken.token)
+                activity.saveCookie(result!!.accessToken.token)
             }
 
             override fun onError(error: FacebookException?) {
