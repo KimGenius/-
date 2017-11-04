@@ -5,6 +5,6 @@ import android.support.v7.app.AppCompatActivity
 /**
  * Created by root1 on 2017. 11. 4..
  */
-class BaseActivity: AppCompatActivity() {
+public open class BaseActivity: AppCompatActivity() {
 
 }
