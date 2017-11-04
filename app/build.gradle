@@ -39,5 +39,6 @@ dependencies {
     compile 'gun0912.ted:tedpermission:2.0.3'
 
     compile 'com.google.android.gms:play-services-auth:11.4.0'
+    compile 'com.facebook.android:facebook-login:[4,5)'
 }
 apply plugin: 'com.google.gms.google-services'
