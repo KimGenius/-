@@ -8,8 +8,8 @@ class NewsModel(Document):
     content = StringField(required=True)
     link = StringField(required=True)
     pub_date = DateTimeField(required=True)
-    like_count = IntField(required=True, default=0)
-    unlike_count = IntField(required=True, default=0)
+    liked_users = ListField(default=[])
+    unliked_users = ListField(default=[])
 
 
 class CommentModel(Document):

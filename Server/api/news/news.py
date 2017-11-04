@@ -26,16 +26,16 @@ class MainPage(Resource):
             'id': str(item.id),
             'title': item.title,
             'description': item.description,
-            'like_count': item.like_count,
-            'unlike_count': item.unlike_count
+            'like_count': len(list(item.liked_users)),
+            'unlike_count': len(list(item.unliked_users))
         } for item in news]
 
         today_trump = [{
             'id': str(item.id),
             'title': item.title,
             'description': item.description,
-            'like_count': item.like_count,
-            'unlike_count': item.unlike_count
+            'like_count': len(list(item.liked_users)),
+            'unlike_count': len(list(item.unliked_users))
         } for item in news if item.pub_date.date() == date.today()]
 
         return {
@@ -63,8 +63,8 @@ class NewsList(Resource):
             'id': str(item.id),
             'title': item.title,
             'description': item.description,
-            'like_count': item.like_count,
-            'unlike_count': item.unlike_count
+            'like_count': len(list(item.liked_users)),
+            'unlike_count': len(list(item.unliked_users))
         } for item in news]
 
         return sorted(news, key=lambda k: k['like_count'], reverse=True)[(page - 1) * 8: page * 8], 200
@@ -86,93 +86,48 @@ class News(Resource):
             'title': news.title,
             'content': news.content,
             'link': news.link,
-            'pub_date': str(news.pub_date)
+            'pub_date': str(news.pub_date),
+            'liked': get_jwt_identity() in list(news.liked_users)
         }, 200
 
 
 class NewsLike(Resource):
     uri = '/news/like'
 
-
-class Comment(Resource):
-    uri = '/news/comment'
-
-    @swagger.doc(news_doc.COMMENT_POST)
+    @swagger.doc(news_doc.NEWS_LIKE_POST)
     @jwt_required
     def post(self):
         """
-        댓글 업로드
+        뉴스 좋아요
         """
         news_id = request.form.get('id')
-        content = request.form.get('content')
 
-        user = AccountModel.objects(id=get_jwt_identity()).first()
-        user.update(comment_count=user.comment_count + 1)
+        news = NewsModel.objects(id=news_id)
 
-        CommentModel(news=NewsModel.objects(id=news_id).first(), writer=AccountModel.objects(id=get_jwt_identity()).first(), content=content).save()
-
-        return Response('', 201)
-
-    @swagger.doc(news_doc.COMMENT_GET)
-    @jwt_required
-    def get(self):
-        """
-        댓글 리스트 조회
-        """
-        news_id = request.args.get('id')
-
-        return [{
-            'id': str(comment.id),
-            'writer': comment.writer.name,
-            'content': comment.content,
-            'like_count': len(list(comment.liked_users)),
-            'liked': get_jwt_identity() in list(comment.liked_users)
-        } for comment in CommentModel.objects(news=NewsModel.objects(id=news_id).first())], 200
-
-
-class CommentLike(Resource):
-    uri = '/news/comment/like'
-
-    @swagger.doc(news_doc.COMMENT_LIKE_POST)
-    @jwt_required
-    def post(self):
-        """
-        댓글 좋아요
-        """
-        comment_id = request.form.get('id')
-
-        comment = CommentModel.objects(id=comment_id).first()
-
-        liked_users = list(comment.liked_users)
+        liked_users = list(news.liked_users)
         if get_jwt_identity() in liked_users:
             return Response('', 204)
 
         liked_users.append(get_jwt_identity())
-        comment.update(liked_users=liked_users)
-
-        comment_writer = comment.writer
-        comment_writer.update(received_like_count=comment_writer.received_like_count + 1)
+        news.update(liked_users=liked_users)
 
         return Response('', 201)
 
-    @swagger.doc(news_doc.COMMENT_LIKE_DELETE)
+    @swagger.doc(news_doc.NEWS_LIKE_DELETE)
     @jwt_required
     def delete(self):
         """
-        댓글 좋아요 취소
+        뉴스 좋아요 취소
         """
-        comment_id = request.form.get('id')
+        news_id = request.form.get('id')
 
-        comment = CommentModel.objects(id=comment_id).first()
+        news = NewsModel.objects(id=news_id)
 
-        liked_users = list(comment.liked_users)
+        liked_users = list(news.liked_users)
         if get_jwt_identity() not in liked_users:
             return Response('', 204)
 
         liked_users.remove(get_jwt_identity())
-        comment.update(liked_users=liked_users)
-
-        comment_writer = comment.writer
-        comment_writer.update(received_like_count=comment_writer.received_like_count - 1)
+        news.update(liked_users=liked_users)
 
         return Response('', 200)
