@@ -27,6 +27,16 @@ class MainActivity : BaseActivity() {
         GlideUtil.setGliding(this, R.drawable.ic_list_off, listBtn)
 
         mainPager.adapter = MainPagerAdapter(supportFragmentManager, this)
+        homeBtn.setOnClickListener {
+            GlideUtil.setGliding(this, R.drawable.ic_list_off, listBtn)
+            GlideUtil.setGliding(this, R.drawable.ic_home_on, homeBtn)
+            mainPager.currentItem = 0
+        }
+        listBtn.setOnClickListener {
+            GlideUtil.setGliding(this, R.drawable.ic_list_on, listBtn)
+            GlideUtil.setGliding(this, R.drawable.ic_home_off, homeBtn)
+            mainPager.currentItem = 1
+        }
 
     }
 
