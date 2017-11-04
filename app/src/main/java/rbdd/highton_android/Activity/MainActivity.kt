@@ -6,6 +6,7 @@ import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
+import android.support.v4.view.ViewPager
 import android.support.v7.app.ActionBarDrawerToggle
 import android.util.Log
 import android.view.MenuItem
@@ -56,6 +57,28 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             GlideUtil.setGliding(this, R.drawable.ic_home_off, homeBtn)
             mainPager.currentItem = 1
         }
+        mainPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {
+
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                when(position) {
+                    0 -> {
+                        GlideUtil.setGliding(this@MainActivity, R.drawable.ic_list_off, listBtn)
+                        GlideUtil.setGliding(this@MainActivity, R.drawable.ic_home_on, homeBtn)
+                    }
+                    1 -> {
+                        GlideUtil.setGliding(this@MainActivity, R.drawable.ic_list_on, listBtn)
+                        GlideUtil.setGliding(this@MainActivity, R.drawable.ic_home_off, homeBtn)
+                    }
+                }
+            }
+
+        })
     }
 
     class MainPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
