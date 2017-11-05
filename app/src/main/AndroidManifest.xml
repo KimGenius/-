@@ -44,6 +44,8 @@
         <activity android:name=".Activity.MainActivity"/>
         <activity android:name=".Activity.SignUpActivity"/>
 
+        <activity android:name=".Activity.ContentNewsActivity"/>
+
     </application>
 
 </manifest>

@@ -30,6 +30,12 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun setBtn() {
+
+        joinBtn.setOnClickListener {
+            goNextActivity(SignUpActivity::class.java, false)
+        }
+
+
         loginBtn.setOnClickListener {
             Connector.api.authBasic(idEdit.text.toString(), pwEdit.text.toString()).enqueue(object : Callback<Login> {
                 override fun onResponse(call: Call<Login>?, response: Response<Login>?) {
