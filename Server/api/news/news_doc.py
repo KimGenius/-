@@ -276,6 +276,13 @@ NEWS_GET = {
     'description': '뉴스 세부 정보 조회',
     'parameters': [
         {
+            'name': 'Authorization',
+            'description': 'JWT Token(JWT ***)',
+            'in': 'header',
+            'type': 'str',
+            'required': True
+        },
+        {
             'name': 'id',
             'description': '세부 정보를 조회할 뉴스의 ID',
             'in': 'query',

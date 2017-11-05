@@ -110,6 +110,7 @@ class News(Resource):
     uri = '/news'
 
     @swagger.doc(news_doc.NEWS_GET)
+    @jwt_required
     def get(self):
         """
         뉴스 세부 정보 조회

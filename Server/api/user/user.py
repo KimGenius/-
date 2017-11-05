@@ -18,7 +18,7 @@ class ActivityLog(Resource):
         """
         user = AccountModel.objects(id=get_jwt_identity()).first()
 
-        after_signup = date.today() - user.signup_date.date()
+        after_signup = (date.today() - user.signup_date.date()).days or 1
 
         return {
             'after_signup': after_signup,
