@@ -9,4 +9,5 @@ data class CommnetModel(@SerializedName("content")val content: String,
                         @SerializedName("writer")val writer: String,
                         @SerializedName("like_count")val like: Int,
                         @SerializedName("liked")val liked: Boolean,
+
                         @SerializedName("id")val id: String)

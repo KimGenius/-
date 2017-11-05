@@ -17,6 +17,7 @@
             android:layout_height="match_parent">
 
             <ImageButton
+                android:id="@+id/backBtn"
                 android:src="@drawable/ic_back"
                 android:scaleType="centerCrop"
                 android:background="@android:color/transparent"
@@ -41,6 +42,7 @@
                 android:src="@drawable/ic_chat"/>
 
             <TextView
+                android:id="@+id/commentCountText"
                 android:layout_marginRight="16dp"
                 android:textSize="20dp"
                 android:text="200"

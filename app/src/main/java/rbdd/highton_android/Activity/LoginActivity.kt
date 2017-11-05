@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import com.facebook.CallbackManager
-import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_login.*
 import rbdd.highton_android.Connect.Connector
 import rbdd.highton_android.Manager.FacebookSignInManager
@@ -50,9 +49,9 @@ class LoginActivity : BaseActivity() {
                             }
                         }
                     } else {
-                        showToast("클라이언트 부분 실패")
+                        showToast("로그인인 실패")
                     }
-                }
+               }
 
                 override fun onFailure(call: Call<Login>?, t: Throwable?) {
                     showToast("서버 연결 실패")
@@ -74,11 +73,25 @@ class LoginActivity : BaseActivity() {
         when (requestCode) {
             GOOGLESIGNINCODE -> {
                 val account = googleSignIn.googleSignInResult(data!!)
-                showToast("" + account?.displayName)
+                account?.let {
+                    Connector.api.authGoogle(account?.id!!, account?.email!!, account?.displayName!!)
+                            .enqueue(object : Callback<Login>{
+                                override fun onFailure(call: Call<Login>?, t: Throwable?) {
+                                    t?.printStackTrace()
+                                }
+
+                                override fun onResponse(call: Call<Login>?, response: Response<Login>?) {
+                                    if (response?.code() == 201){
+                                        saveCookie(response?.body()?.access_token!!)
+                                        goNextActivity(MainActivity::class.java, true)
+                                    }
+                                }
+                            })
+                }
             }
             FACEBOOKSIGNCODE -> {
                 super.onActivityResult(requestCode, resultCode, data)
-                faceCall.onActivityResult(requestCode, resultCode, data)
+                //faceCall.onActivityResult(requestCode, resultCode, data)
             }
         }
     }

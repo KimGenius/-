@@ -17,11 +17,11 @@ interface Api {
 
     @POST("/auth/facebook")
     @FormUrlEncoded
-    fun authFacebook(@Field("token") token: String, @Field("name") name: String): Call<JsonObject>
+    fun authFacebook(@Field("token") token: String, @Field("name") name: String): Call<Login>
 
     @POST("/auth/google")
     @FormUrlEncoded
-    fun authGoogle(@Field("token") token: String, @Field("name") name: String, @Field("email") email: String): Call<JsonObject>
+    fun authGoogle(@Field("token") token: String, @Field("name") name: String, @Field("email") email: String): Call<Login>
 
     @POST("/signup")
     @FormUrlEncoded
@@ -48,8 +48,7 @@ interface Api {
     fun addLike(@Header("Authorization") token: String, @Field("id") id: String): Call<Void>
 
     @DELETE("/news/comment/like")
-    @FormUrlEncoded
-    fun removeLike(@Header("Authorization") token: String, @Field("id") id: String): Call<Void>
+    fun removeLike(@Header("Authorization") token: String, @Query("id") id: String): Call<Void>
 
     @DELETE("/news/like")
     @FormUrlEncoded

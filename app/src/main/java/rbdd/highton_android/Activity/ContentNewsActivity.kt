@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_show_content.*
 import rbdd.highton_android.Connect.Connector
@@ -34,8 +35,10 @@ class ContentNewsActivity : BaseActivity() {
                     headerText.text = body?.title
                     contentNewsText.text = body?.content
                     dateText.text = body?.date
+
                     isLike = body?.liked!!
                     checkLike()
+
                     GlideUtil.setGliding(this@ContentNewsActivity, TrumpUtil.getRandomTrump(), img)
 
                     goLink.setOnClickListener {
@@ -73,12 +76,19 @@ class ContentNewsActivity : BaseActivity() {
             finish()
         }
 
+        commentButton.setOnClickListener {
+            val intent = Intent(this, CommentActivity::class.java)
+            intent.putExtra("id", id)
+            startActivity(intent)
+        }
+
 
         progress_bar.visibility = View.GONE
 
     }
 
     fun checkLike(){
+        Log.d("xxx", "" + isLike)
         if (isLike){
             likeButton.setBackgroundResource(R.drawable.back_content_button_liked)
             likeButton.setTextColor(resources.getColor(R.color.colorMain))

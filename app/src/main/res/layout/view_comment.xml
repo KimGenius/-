@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.3" />
 
     <TextView
-        android:id="@+id/commentTime"
+        android:id="@+id/commentTimeText"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:text="3분전"
@@ -40,7 +40,7 @@
         app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
-        android:id="@+id/commentName"
+        android:id="@+id/commentWriterText"
         android:layout_width="45dp"
         android:layout_height="wrap_content"
         android:text="김학준"

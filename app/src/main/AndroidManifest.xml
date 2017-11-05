@@ -51,6 +51,7 @@
         <activity android:name=".Activity.ContentNewsActivity" />
         <activity android:name=".Activity.AlimActivity"/>
         <activity android:name=".Activity.HistoryActivity"/>
+        <activity android:name=".Activity.CommentActivity"/>
 
     </application>
 
