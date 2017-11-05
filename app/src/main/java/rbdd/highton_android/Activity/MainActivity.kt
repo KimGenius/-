@@ -5,6 +5,7 @@ import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
+import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.ActionBarDrawerToggle
 import android.util.Log
@@ -13,7 +14,6 @@ import android.view.View
 import android.widget.TextView
 import com.facebook.CallbackManager
 import com.facebook.login.LoginManager
-import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import rbdd.highton_android.Connect.Connector
@@ -43,7 +43,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
             }
             "로그아웃" -> {
-                LoginManager.getInstance().logOut()
                 goNextActivity(LoginActivity::class.java, true)
             }
             "회원탈퇴" -> {
@@ -60,8 +59,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        progress_bar.visibility = View.VISIBLE
-//        GlideUtil.setGliding(this, R.drawable.ic_nav_drawer, navigationBarImg)
         val toggle = ActionBarDrawerToggle(this, drawer_layout, topBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.setDrawerListener(toggle)
         val navV= nav_view.inflateHeaderView(R.layout.nav_header_main)
@@ -123,7 +120,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
 
         })
-//        progress_bar.visibility = View.GONE
+
     }
 
     class MainPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
@@ -144,6 +141,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         override fun getCount(): Int {
             return 2
+        }
+
+        override fun getItemPosition(`object`: Any?): Int {
+            return PagerAdapter.POSITION_NONE
         }
 
     }
