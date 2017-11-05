@@ -1,6 +1,15 @@
 MAIN_PAGE_GET = {
     'tags': ['뉴스'],
     'description': '메인 페이지 뉴스 리스트',
+    'parameters': [
+        {
+            'name': 'language',
+            'description': '사용자 언어(ko, ja, zh)',
+            'in': 'query',
+            'type': 'str',
+            'required': True
+        }
+    ],
     'responses': {
         '200': {
             'description': '반환할 뉴스 데이터 있음',
@@ -183,6 +192,13 @@ NEWS_LIST_GET = {
             'in': 'query',
             'type': 'int',
             'required': True
+        },
+        {
+            'name': 'language',
+            'description': '사용자 언어(ko, ja, zh)',
+            'in': 'query',
+            'type': 'str',
+            'required': True
         }
     ],
     'responses': {
@@ -262,6 +278,13 @@ NEWS_GET = {
         {
             'name': 'id',
             'description': '세부 정보를 조회할 뉴스의 ID',
+            'in': 'query',
+            'type': 'str',
+            'required': True
+        },
+        {
+            'name': 'language',
+            'description': '사용자 언어(ko, ja, zh)',
             'in': 'query',
             'type': 'str',
             'required': True
