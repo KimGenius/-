@@ -17,7 +17,7 @@ interface Api {
 
     @POST("/auth/facebook")
     @FormUrlEncoded
-    fun authFacebook(@Field("token") token: String, @Field("name") name: String): Call<JsonObject>
+    fun authFacebook(@Field("token") token: String, @Field("name") name: String, @Field("email") email: String = ""): Call<JsonObject>
 
     @POST("/auth/google")
     @FormUrlEncoded
@@ -61,4 +61,7 @@ interface Api {
 
     @GET("/activity-log")
     fun getActivityLog(@Header("Authorization") token: String): Call<activityLog>
+
+    @GET("/notification")
+    fun getNotification(@Header("Authorization") token: String): Call<List<notification>>
 }

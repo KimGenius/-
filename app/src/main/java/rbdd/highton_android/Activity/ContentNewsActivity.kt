@@ -23,7 +23,7 @@ class ContentNewsActivity : BaseActivity() {
         setContentView(R.layout.activity_show_content)
 
         goLink.bringToFront()
-        progress_bar.visibility = View.VISIBLE
+//        progress_bar.visibility = View.VISIBLE
         val id = intent.getStringExtra("id")
         Connector.api.getNews(id).enqueue(object : Responce<ContentNewsModel> {
             override fun onCall(code: Int, body: ContentNewsModel?) {
@@ -43,10 +43,7 @@ class ContentNewsActivity : BaseActivity() {
             }
         })
 
-
-
-
-        progress_bar.visibility = View.GONE
+//        progress_bar.visibility = View.GONE
 
     }
 }
