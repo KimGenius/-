@@ -3,7 +3,7 @@ from flask_jwt_extended import get_jwt_identity, jwt_required
 from flask_restful_swagger_2 import Resource, request, swagger
 
 from api.news import comment_doc
-from db.models.user import AccountModel
+from db.models.user import AccountModel, NotificationModel
 from db.models.news import NewsModel, CommentModel
 
 
@@ -65,6 +65,10 @@ class CommentLike(Resource):
 
         comment_writer = comment.writer
         comment_writer.update(received_like_count=comment_writer.received_like_count + 1)
+
+        notification_queue = list(comment_writer.notification_queue)
+        notification_queue.append(NotificationModel(target=NewsModel.objects(id=comment.news.id).first(), content='{0}님이 회원님의 댓글을 좋아합니다'.format(AccountModel.objects(id=get_jwt_identity()).first().name)))
+        comment_writer.update(notification_queue=notification_queue)
 
         return Response('', 201)
 

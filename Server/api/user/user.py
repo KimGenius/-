@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 
 from flask_jwt_extended import get_jwt_identity, jwt_required
 from flask_restful_swagger_2 import Resource, swagger
@@ -45,3 +45,19 @@ class Info(Resource):
             'email': user.email,
             'name': user.name
         }, 200
+
+
+class Notification(Resource):
+    uri = '/notification'
+
+    @swagger.doc(user_doc.NOTIFICATION_GET)
+    @jwt_required
+    def get(self):
+        """
+        알림
+        """
+        return sorted([{
+            'target_news': str(notification.target.id),
+            'content': notification.content,
+            'notification_time': str(notification.notification_time.date())
+        } for notification in AccountModel.objects(id=get_jwt_identity()).first().notification_queue], key=lambda k: k['notification_time'], reverse=True), 200

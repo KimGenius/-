@@ -51,3 +51,27 @@ INFO_GET = {
         }
     }
 }
+
+NOTIFICATION_GET = {
+    'tags': ['마이페이지'],
+    'description': '알림 목록',
+    'parameters': [
+        {
+            'name': 'Authorization',
+            'description': 'JWT Token(JWT ***)',
+            'in': 'header',
+            'type': 'str',
+            'required': True
+        }
+    ],
+    'responses': {
+        '200': {
+            'description': '알림 불러오기 성공(Array length가 0일 수 있음)',
+            'examples': {
+                'application/json': [
+
+                ]
+            }
+        }
+    }
+}
