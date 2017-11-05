@@ -43,6 +43,9 @@ class ContentNewsActivity : BaseActivity() {
             }
         })
 
+
+
+
         progress_bar.visibility = View.GONE
 
     }
