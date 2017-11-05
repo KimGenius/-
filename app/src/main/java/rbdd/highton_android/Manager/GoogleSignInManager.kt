@@ -29,6 +29,7 @@ class GoogleSignInManager(activity: BaseActivity) {
                 .build()
 
         activity.startActivityForResult(Auth.GoogleSignInApi.getSignInIntent(googleApiClient), activity.GOOGLESIGNINCODE)
+//        activity.finish()
     }
 
     public fun googleSignInResult(data: Intent): GoogleSignInAccount?{

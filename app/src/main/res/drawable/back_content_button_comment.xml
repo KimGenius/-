@@ -9,7 +9,9 @@
     <item>
         <shape android:shape="rectangle">
             <corners android:radius="32dp"/>
-            <solid android:color="#FFFFFF"/>
+            <solid android:color="@android:color/transparent"/>
+            <stroke android:width="2dp"
+                android:color="#FFFFFF"/>
         </shape>
     </item>
 </selector>

@@ -13,7 +13,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="2dp"
-            android:text="트럼프 핫이슈"
+            android:text="@string/main_trump_issue"
             android:textColor="@color/colorMain"
             android:textSize="18dp"
             android:textStyle="bold"
@@ -25,7 +25,7 @@
             android:layout_marginBottom="4dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="가장 핫한 트럼프 정보입니다."
+            android:text="@string/main_trump_issue_content"
             android:textSize="12dp"/>
 
         <android.support.v4.view.ViewPager
@@ -54,7 +54,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="2dp"
-            android:text="오늘의 트럼프"
+            android:text="@string/main_today_trump"
             android:textColor="@color/colorMain"
             android:textSize="18dp"
             android:textStyle="bold"
@@ -66,7 +66,7 @@
             android:layout_marginBottom="12dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="오늘의 핫한 트럼프 정보입니다."
+            android:text="@string/main_trump_today_info"
             android:textSize="12dp"/>
 
         <android.support.v4.view.ViewPager

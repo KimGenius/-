@@ -5,23 +5,23 @@
         <item
             android:id="@+id/alimBtn"
             android:icon="@drawable/ic_recent_alerts"
-            android:title="최근 알림" />
+            android:title="@string/menu_1" />
         <item
             android:id="@+id/logBtn"
             android:icon="@drawable/ic_record"
-            android:title="활동 기록" />
+            android:title="@string/menu_2" />
         <item
             android:id="@+id/pwChange"
             android:icon="@drawable/ic_change_password"
-            android:title="비밀번호 변경" />
+            android:title="@string/menu_3" />
         <item
             android:id="@+id/logout"
             android:icon="@drawable/ic_log_out"
-            android:title="로그아웃" />
+            android:title="@string/menu_4" />
         <item
             android:id="@+id/signDelete"
             android:icon="@drawable/ic_withdrawal"
-            android:title="회원탈퇴" />
+            android:title="@string/menu_5" />
     </group>
 
 </menu>

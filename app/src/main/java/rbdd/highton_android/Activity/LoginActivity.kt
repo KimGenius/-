@@ -30,17 +30,23 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun setBtn() {
+
+        joinBtn.setOnClickListener {
+            goNextActivity(MainActivity::class.java,true)
+        }
+
+
         loginBtn.setOnClickListener {
             Connector.api.authBasic(idEdit.text.toString(), pwEdit.text.toString()).enqueue(object : Callback<Login> {
                 override fun onResponse(call: Call<Login>?, response: Response<Login>?) {
                     if (response!!.isSuccessful) {
                         response.body().run {
                             Log.d("repsones", response.body()!!.access_token)
-                            if (this!!.msg !== "") {
+                            if (this!!.msg != "") {
                                 showToast(this!!.msg)
                             } else {
                                 saveCookie(response.body()!!.access_token)
-                                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                                goNextActivity(MainActivity::class.java, true)
                             }
                         }
                     } else {

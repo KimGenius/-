@@ -1,6 +1,5 @@
 package rbdd.highton_android.Activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
@@ -12,6 +11,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import com.facebook.CallbackManager
+import com.facebook.login.LoginManager
 import kotlinx.android.synthetic.main.activity_main.*
 import rbdd.highton_android.Fragment.ListFragement
 import rbdd.highton_android.Fragment.MainFragement
@@ -23,8 +23,24 @@ import rbdd.highton_android.Util.GlideUtil
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when(item) {
+        Log.d("item", item.itemId.toString())
+        when (item.itemId) {
+            2131230750-> {
+                goNextActivity(AlimActivity::class.java, false)
+            }
+            2131230873 -> {
+                goNextActivity(HistoryActivity::class.java, false)
+            }
+            2131230908 -> {
 
+            }
+            2131230876 -> {
+                LoginManager.getInstance().logOut()
+                goNextActivity(LoginActivity::class.java, true)
+            }
+            2131230939 -> {
+
+            }
         }
         return true
     }
@@ -35,6 +51,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+//        progress_bar.visibility = View.VISIBLE
 //        GlideUtil.setGliding(this, R.drawable.ic_nav_drawer, navigationBarImg)
         val toggle = ActionBarDrawerToggle(this, drawer_layout, topBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.setDrawerListener(toggle)
@@ -57,7 +75,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             GlideUtil.setGliding(this, R.drawable.ic_home_off, homeBtn)
             mainPager.currentItem = 1
         }
-        mainPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
+        mainPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
 
             }
@@ -66,7 +84,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
 
             override fun onPageSelected(position: Int) {
-                when(position) {
+                when (position) {
                     0 -> {
                         GlideUtil.setGliding(this@MainActivity, R.drawable.ic_list_off, listBtn)
                         GlideUtil.setGliding(this@MainActivity, R.drawable.ic_home_on, homeBtn)
@@ -79,6 +97,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
 
         })
+//        progress_bar.visibility = View.GONE
     }
 
     class MainPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
@@ -90,7 +109,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
 
         override fun getItem(position: Int): Fragment? {
-            return when(position){
+            return when (position) {
                 0 -> MainFragement(fm)
                 1 -> ListFragement()
                 else -> null

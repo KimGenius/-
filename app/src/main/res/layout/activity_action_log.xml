@@ -32,7 +32,7 @@
                 android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="활동 기록"/>
+                android:text="@string/logTitle"/>
         </LinearLayout>
     </Toolbar>
 
@@ -68,16 +68,16 @@
                    <TextView
                        android:textColor="#FFFFFF"
                        android:textStyle="bold"
-                       android:textSize="20dp"
+                       android:textSize="18sp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="가입한지"/>
+                       android:text="@string/logJoinUs"/>
 
                    <TextView
                        android:id="@+id/signupDay"
                        android:textColor="#FFFFFF"
                        android:textStyle="bold"
-                       android:textSize="20dp"
+                       android:textSize="18sp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="42일"/>
@@ -130,16 +130,16 @@
                    <TextView
                        android:textColor="@color/colorSub"
                        android:textStyle="bold"
-                       android:textSize="20dp"
+                       android:textSize="18sp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="기여도"/>
+                       android:text="@string/logContribution"/>
 
                    <TextView
                        android:id="@+id/contriScore"
                        android:textColor="@color/colorSub"
                        android:textStyle="bold"
-                       android:textSize="20dp"
+                       android:textSize="18sp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="31,521점"/>
@@ -199,16 +199,16 @@
                    <TextView
                        android:textColor="@color/colorSub"
                        android:textStyle="bold"
-                       android:textSize="20dp"
+                       android:textSize="18sp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="남긴 댓글"/>
+                       android:text="@string/logComment"/>
 
                    <TextView
                        android:id="@+id/commentScore"
                        android:textColor="@color/colorSub"
                        android:textStyle="bold"
-                       android:textSize="20dp"
+                       android:textSize="18sp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="321개"/>
@@ -261,10 +261,10 @@
                    <TextView
                        android:textColor="#FFFFFF"
                        android:textStyle="bold"
-                       android:textSize="20dp"
+                       android:textSize="18sp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="받은 좋아요"/>
+                       android:text="@string/logLike"/>
 
                    <TextView
                        android:id="@+id/likeScore"
@@ -272,7 +272,7 @@
                        android:layout_height="wrap_content"
                        android:text="3221개"
                        android:textColor="#FFFFFF"
-                       android:textSize="20dp"
+                       android:textSize="18sp"
                        android:textStyle="bold" />
 
                </LinearLayout>
@@ -330,16 +330,16 @@
                    <TextView
                        android:textColor="#FFFFFF"
                        android:textStyle="bold"
-                       android:textSize="20dp"
+                       android:textSize="18sp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="하루 남긴 댓글"/>
+                       android:text="@string/todayComment"/>
 
                    <TextView
                        android:id="@+id/commentOnedayScore"
                        android:textColor="#FFFFFF"
                        android:textStyle="bold"
-                       android:textSize="20dp"
+                       android:textSize="18sp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="평균 1.6개"/>
@@ -392,16 +392,16 @@
                    <TextView
                        android:textColor="@color/colorSub"
                        android:textStyle="bold"
-                       android:textSize="20dp"
+                       android:textSize="18sp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="하루 받은 좋아요"/>
+                       android:text="@string/todayLike"/>
 
                    <TextView
                        android:id="@+id/likeOnedayScore"
                        android:textColor="@color/colorSub"
                        android:textStyle="bold"
-                       android:textSize="20dp"
+                       android:textSize="18sp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="평균 9.5개"/>
