@@ -5,7 +5,7 @@ from db.mongo import *
 
 class NotificationModel(EmbeddedDocument):
     content = StringField(required=True)
-    notification_time = StringField(str(datetime.now())[:-7])
+    notification_time = DateTimeField(required=True, default=datetime.now())
 
 
 class AccountModel(Document):

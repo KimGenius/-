@@ -26,3 +26,28 @@ ACTIVITY_LOG_GET = {
         }
     }
 }
+
+INFO_GET = {
+    'tags': ['마이페이지'],
+    'description': '내 정보 불러오기',
+    'parameters': [
+        {
+            'name': 'Authorization',
+            'description': 'JWT Token(JWT ***)',
+            'in': 'header',
+            'type': 'str',
+            'required': True
+        }
+    ],
+    'responses': {
+        '200': {
+            'description': '내 정보 불러오기 성공',
+            'examples': {
+                'application/json': {
+                    'email': 'yjyj@naver.com',
+                    'name': '김영배'
+                }
+            }
+        }
+    }
+}

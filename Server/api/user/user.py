@@ -28,3 +28,20 @@ class ActivityLog(Resource):
             'comment_avg': user.comment_count / after_signup,
             'received_like_avg': user.received_like_count / after_signup
         }, 200
+
+
+class Info(Resource):
+    uri = '/info'
+
+    @swagger.doc(user_doc.INFO_GET)
+    @jwt_required
+    def get(self):
+        """
+        내 정보
+        """
+        user = AccountModel.objects(id=get_jwt_identity()).first()
+
+        return {
+            'email': user.email,
+            'name': user.name
+        }, 200
