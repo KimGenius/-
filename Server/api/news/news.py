@@ -26,42 +26,42 @@ class MainPage(Resource):
 
         language = request.args.get('language')
 
+        hot_issue = sorted([{
+            'id': str(item.id),
+            'title': item.title,
+            'description': item.description,
+            'like_count': len(list(item.liked_users)),
+            'unlike_count': len(list(item.unliked_users))
+        } for item in news], key=lambda k: k['like_count'], reverse=True)[:11]
+
+        today_trump = sorted([{
+                'id': str(item.id),
+                'title': item.title,
+                'description': item.description,
+                'like_count': len(list(item.liked_users)),
+                'unlike_count': len(list(item.unliked_users))
+            } for item in news if item.pub_date.date() == date.today()], key=lambda k: k['like_count'], reverse=True)[:11]
+
         if language != 'ko':
             hot_issue = [{
-                'id': str(item.id),
-                'title': _ts.translate(item.title, language, 'ko').text,
-                'description': _ts.translate(item.description, language, 'ko').text,
-                'like_count': len(list(item.liked_users)),
-                'unlike_count': len(list(item.unliked_users))
-            } for item in news]
+                'id': item['id'],
+                'title': _ts.translate(item['title'], language, 'ko').text,
+                'description': _ts.translate(item['description'], language, 'ko').text,
+                'like_count': item['like_count'],
+                'unlike_count': item['unlike_count']
+            } for item in hot_issue]
 
             today_trump = [{
-                'id': str(item.id),
-                'title': _ts.translate(item.title, language, 'ko').text,
-                'description': _ts.translate(item.description, language, 'ko').text,
-                'like_count': len(list(item.liked_users)),
-                'unlike_count': len(list(item.unliked_users))
-            } for item in news if item.pub_date.date() == date.today()]
-        else:
-            hot_issue = [{
-                'id': str(item.id),
-                'title': item.title,
-                'description': item.description,
-                'like_count': len(list(item.liked_users)),
-                'unlike_count': len(list(item.unliked_users))
-            } for item in news]
-
-            today_trump = [{
-                'id': str(item.id),
-                'title': item.title,
-                'description': item.description,
-                'like_count': len(list(item.liked_users)),
-                'unlike_count': len(list(item.unliked_users))
-            } for item in news if item.pub_date.date() == date.today()]
+                'id': item['id'],
+                'title': _ts.translate(item['title'], language, 'ko').text,
+                'description': _ts.translate(item['description'], language, 'ko').text,
+                'like_count': item['like_count'],
+                'unlike_count': item['unlike_count']
+            } for item in today_trump]
 
         return {
-            'hot_issue': sorted(hot_issue, key=lambda k: k['like_count'], reverse=True)[:11],
-            'today_trump': sorted(today_trump, key=lambda k: k['like_count'], reverse=True)[:11]
+            'hot_issue': hot_issue,
+            'today_trump': today_trump
         }, 200
 
 
@@ -82,24 +82,24 @@ class NewsList(Resource):
 
         language = request.args.get('language')
 
+        news = sorted([{
+            'id': str(item.id),
+            'title': item.title,
+            'description': item.description,
+            'like_count': len(list(item.liked_users)),
+            'unlike_count': len(list(item.unliked_users))
+        } for item in news], key=lambda k: k['like_count'], reverse=True)[(page - 1) * 8: page * 8]
+
         if language != 'ko':
             news = [{
-                'id': str(item.id),
-                'title': _ts.translate(item.title, language, 'ko').text,
-                'description': _ts.translate(item.description, language, 'ko').text,
-                'like_count': len(list(item.liked_users)),
-                'unlike_count': len(list(item.unliked_users))
-            } for item in news]
-        else:
-            news = [{
-                'id': str(item.id),
-                'title': item.title,
-                'description': item.description,
-                'like_count': len(list(item.liked_users)),
-                'unlike_count': len(list(item.unliked_users))
+                'id': item['id'],
+                'title': _ts.translate(item['title'], language, 'ko').text,
+                'description': _ts.translate(item['description'], language, 'ko').text,
+                'like_count': item['like_count'],
+                'unlike_count': item['unlike_count']
             } for item in news]
 
-        return sorted(news, key=lambda k: k['like_count'], reverse=True)[(page - 1) * 8: page * 8], 200
+        return news
 
 
 class News(Resource):
