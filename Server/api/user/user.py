@@ -57,7 +57,7 @@ class Notification(Resource):
         알림
         """
         return sorted([{
-            'target_news': str(notification.target.id),
+            'target_news': str(notification.target_news),
             'content': notification.content,
             'notification_time': str(notification.notification_time.date())
         } for notification in AccountModel.objects(id=get_jwt_identity()).first().notification_queue], key=lambda k: k['notification_time'], reverse=True), 200

@@ -67,7 +67,7 @@ class CommentLike(Resource):
         comment_writer.update(received_like_count=comment_writer.received_like_count + 1)
 
         notification_queue = list(comment_writer.notification_queue)
-        notification_queue.append(NotificationModel(target=NewsModel.objects(id=comment.news.id).first(), content='{0}님이 회원님의 댓글을 좋아합니다'.format(AccountModel.objects(id=get_jwt_identity()).first().name)))
+        notification_queue.append(NotificationModel(target=str(comment.news.id), content='{0}님이 회원님의 댓글을 좋아합니다'.format(AccountModel.objects(id=get_jwt_identity()).first().name)))
         comment_writer.update(notification_queue=notification_queue)
 
         return Response('', 201)

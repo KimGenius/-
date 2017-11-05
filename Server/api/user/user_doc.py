@@ -69,7 +69,16 @@ NOTIFICATION_GET = {
             'description': '알림 불러오기 성공(Array length가 0일 수 있음)',
             'examples': {
                 'application/json': [
-
+                    {
+                        'target_news': '59fe0c9b67518016a82f60b6',
+                        'content': '조민규님이 회원님의 댓글을 좋아합니다',
+                        'notification_time': '2017-11-04'
+                    },
+                    {
+                        'target_news': '59fe0c9b67518016a821f410',
+                        'content': '김영배님이 회원님의 댓글을 좋아합니다',
+                        'notification_time': '2017-11-03'
+                    }
                 ]
             }
         }

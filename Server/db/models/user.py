@@ -1,11 +1,10 @@
 from datetime import date, datetime
 
-from db.models.news import NewsModel
 from db.mongo import *
 
 
 class NotificationModel(EmbeddedDocument):
-    target = ReferenceField(NewsModel, required=True)
+    target_news = StringField(required=True)
     content = StringField(required=True)
     notification_time = DateTimeField(required=True, default=datetime.now())
 
