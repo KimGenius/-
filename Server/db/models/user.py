@@ -4,8 +4,9 @@ from db.mongo import *
 
 
 class NotificationModel(EmbeddedDocument):
+    target_news = StringField(required=True)
     content = StringField(required=True)
-    notification_time = StringField(str(datetime.now())[:-7])
+    notification_time = DateTimeField(required=True, default=datetime.now())
 
 
 class AccountModel(Document):
@@ -15,7 +16,7 @@ class AccountModel(Document):
     name = StringField(required=True, default='익명 사용자')
 
     notification_queue = ListField(EmbeddedDocumentField(NotificationModel), default=[])
-    signup_date = StringField(required=True, default=str(date.today()))
+    signup_date = DateTimeField(required=True, default=date.today())
     contribution_score = IntField(required=True, default=0)
     comment_count = IntField(required=True, default=0)
     received_like_count = IntField(required=True, default=0)

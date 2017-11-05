@@ -52,6 +52,14 @@ def _extract_datetime(str_date):
     return datetime(year, month, day, hour, minute, second)
 
 
+def _remover(text):
+    text = text.split('</script>\n')[1].split('<!-- //')[0].replace('<br/>', '\n').replace('<br>', '\n').replace('&lt;', '<').replace('&gt;', '>').replace('<b>', '').replace('</b>', '').replace('&quot;', "'").replace('<div>', '').replace('</div>', '').replace('&amp;', '&').replace('<strong>', '').replace('</strong>', '')
+    text = re.sub('<a.+</a>', '', text)
+    text = re.sub('<span.+</span>', '', text)
+
+    return text
+
+
 def parse():
     NewsModel.drop_collection()
 
@@ -68,17 +76,18 @@ def parse():
             if article is None:
                 continue
 
-            content = str(article).split('</script>\n')[1].split('<!-- //')[0].replace('<br/>', '\n').replace('&lt;', '<').replace('&gt;', '>')
-            content = re.sub('<a.+</a>', '', content)
+            content = _remover(str(article))
 
             if '이재명 기자' in content or '조성봉 기자' in content or '이지은 기자' in content:
                 continue
 
             title = item['title'].replace('<b>', '').replace('</b>', '').replace('&quot;', "'")
             description = item['description'].replace('<b>', '').replace('</b>', '').replace('&quot;', "'")
+            author_list = re.findall('[가-힇]+ 기자', content)
+            author = author_list[0] if author_list else ''
             link = item['link']
             pub_date = _extract_datetime(item['pubDate'])
 
             print('{0} done.'.format(item['title']))
 
-            NewsModel(title=title, description=description, content=content, link=link, pub_date=pub_date).save()
+            NewsModel(title=title, description=description, content=content, author=author, link=link, pub_date=pub_date).save()
