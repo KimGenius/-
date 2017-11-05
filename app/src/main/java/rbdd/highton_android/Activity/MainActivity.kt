@@ -10,15 +10,23 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import com.facebook.CallbackManager
 import com.facebook.login.LoginManager
+import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.nav_header_main.*
+import rbdd.highton_android.Connect.Connector
 import rbdd.highton_android.Fragment.ListFragement
 import rbdd.highton_android.Fragment.MainFragement
 import rbdd.highton_android.Manager.GoogleSignInManager
+import rbdd.highton_android.Model.MyPAge
 import rbdd.highton_android.R
 import rbdd.highton_android.Util.BaseActivity
 import rbdd.highton_android.Util.GlideUtil
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -56,6 +64,24 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 //        GlideUtil.setGliding(this, R.drawable.ic_nav_drawer, navigationBarImg)
         val toggle = ActionBarDrawerToggle(this, drawer_layout, topBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.setDrawerListener(toggle)
+        val navV= nav_view.inflateHeaderView(R.layout.nav_header_main)
+        Connector.api.mypage(getCookie()).enqueue(object : Callback<MyPAge> {
+            override fun onResponse(call: Call<MyPAge>?, response: Response<MyPAge>?) {
+                if(response!!.isSuccessful) {
+                    val navUserName = navV.findViewById<TextView>(R.id.userName)
+                    navUserName.text = response.body()!!.name
+                    val userEmail = navV.findViewById<TextView>(R.id.userEmail)
+                    userEmail.text = response.body()!!.email
+                }else {
+                    Log.d("mypage","클라이언트 오류")
+                }
+            }
+
+            override fun onFailure(call: Call<MyPAge>?, t: Throwable?) {
+                Log.d("mypage","서버 오류")
+            }
+
+        })
         toggle.syncState()
 
         val navigationView = findViewById<View>(R.id.nav_view) as NavigationView

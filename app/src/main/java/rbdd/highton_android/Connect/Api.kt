@@ -64,4 +64,7 @@ interface Api {
 
     @GET("/notification")
     fun getNotification(@Header("Authorization") token: String): Call<List<notification>>
+
+    @GET("/info")
+    fun mypage(@Header("Authorization") token: String) : Call<MyPAge>
 }
