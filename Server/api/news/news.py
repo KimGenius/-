@@ -29,16 +29,16 @@ class MainPage(Resource):
         if language != 'ko':
             hot_issue = [{
                 'id': str(item.id),
-                'title': _ts.translate(item.title, language, 'ko'),
-                'description': _ts.translate(item.description, language, 'ko'),
+                'title': _ts.translate(item.title, language, 'ko').text,
+                'description': _ts.translate(item.description, language, 'ko').text,
                 'like_count': len(list(item.liked_users)),
                 'unlike_count': len(list(item.unliked_users))
             } for item in news]
 
             today_trump = [{
                 'id': str(item.id),
-                'title': _ts.translate(item.title, language, 'ko'),
-                'description': _ts.translate(item.description, language, 'ko'),
+                'title': _ts.translate(item.title, language, 'ko').text,
+                'description': _ts.translate(item.description, language, 'ko').text,
                 'like_count': len(list(item.liked_users)),
                 'unlike_count': len(list(item.unliked_users))
             } for item in news if item.pub_date.date() == date.today()]
@@ -85,8 +85,8 @@ class NewsList(Resource):
         if language != 'ko':
             news = [{
                 'id': str(item.id),
-                'title': _ts.translate(item.title, language, 'ko'),
-                'description': _ts.translate(item.description, language, 'ko'),
+                'title': _ts.translate(item.title, language, 'ko').text,
+                'description': _ts.translate(item.description, language, 'ko').text,
                 'like_count': len(list(item.liked_users)),
                 'unlike_count': len(list(item.unliked_users))
             } for item in news]
@@ -118,8 +118,9 @@ class News(Resource):
 
         if language != 'ko':
             return {
-                'title': _ts.translate(news.title, language, 'ko'),
-                'content': _ts.translate(news.content, language, 'ko'),
+                'title': _ts.translate(news.title, language, 'ko').text,
+                'content': _ts.translate(news.content, language, 'ko').text,
+                'author': _ts.translate(news.author, language, 'ko').text,
                 'link': news.link,
                 'pub_date': str(news.pub_date),
                 'liked': get_jwt_identity() in list(news.liked_users)
@@ -128,6 +129,7 @@ class News(Resource):
             return {
                 'title': news.title,
                 'content': news.content,
+                'author': news.author,
                 'link': news.link,
                 'pub_date': str(news.pub_date),
                 'liked': get_jwt_identity() in list(news.liked_users)

@@ -83,9 +83,11 @@ def parse():
 
             title = item['title'].replace('<b>', '').replace('</b>', '').replace('&quot;', "'")
             description = item['description'].replace('<b>', '').replace('</b>', '').replace('&quot;', "'")
+            author_list = re.findall('[가-힇]+ 기자', content)
+            author = author_list[0] if author_list else ''
             link = item['link']
             pub_date = _extract_datetime(item['pubDate'])
 
             print('{0} done.'.format(item['title']))
 
-            NewsModel(title=title, description=description, content=content, link=link, pub_date=pub_date).save()
+            NewsModel(title=title, description=description, content=content, author=author, link=link, pub_date=pub_date).save()

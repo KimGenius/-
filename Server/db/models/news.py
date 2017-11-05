@@ -6,6 +6,7 @@ class NewsModel(Document):
     title = StringField(required=True)
     description = StringField(required=True)
     content = StringField(required=True)
+    author = StringField()
     link = StringField(required=True)
     pub_date = DateTimeField(required=True)
     liked_users = ListField(default=[])
