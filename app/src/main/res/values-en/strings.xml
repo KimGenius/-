@@ -32,9 +32,9 @@
     <string name="main_today_trump">Today Trump</string>
     <string name="main_trump_today_info">Today hot trump information.</string>
     <string name="news">News</string>
-    <string name="menu_1">Recent Alerts</string>
-    <string name="menu_2">Activity record</string>
-    <string name="menu_3">Change Password</string>
-    <string name="menu_4">Sign out</string>
-    <string name="menu_5">Delete Account</string>
+    <string name="menu_1">최근 알림</string>
+    <string name="menu_2">활동 기록</string>
+    <string name="menu_3">비밀번호 변경</string>
+    <string name="menu_4">로그아웃</string>
+    <string name="menu_5">회원탈퇴</string>
 </resources>

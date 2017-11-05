@@ -24,21 +24,21 @@ import rbdd.highton_android.Util.GlideUtil
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         Log.d("item", item.itemId.toString())
-        when (item.itemId) {
-            2131230750-> {
+        when (item.title) {
+            "최근 알림" -> {
                 goNextActivity(AlimActivity::class.java, false)
             }
-            2131230873 -> {
+            "활동 기록" -> {
                 goNextActivity(HistoryActivity::class.java, false)
             }
-            2131230908 -> {
+            "비밀번호 변경" -> {
 
             }
-            2131230876 -> {
+            "로그아웃" -> {
                 LoginManager.getInstance().logOut()
                 goNextActivity(LoginActivity::class.java, true)
             }
-            2131230939 -> {
+            "회원탈퇴" -> {
 
             }
         }
