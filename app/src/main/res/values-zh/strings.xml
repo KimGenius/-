@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">highton_android</string>
+    <string name="logTitle">活动记录</string>
+    <string name="logJoinUs">加入与否</string>
+    <string name="logContribution">贡献度</string>
+    <string name="logComment">回帖</string>
+    <string name="logLike">像</string>
+    <string name="todayComment">今天留言</string>
+    <string name="todayLike">今天,像</string>
+    <string name="comment_comment">科门特</string>
+    <string name="login_welcome">欢迎回来!</string>
+    <string name="login_info">继续在日志</string>
+    <string name="login_id">身份证</string>
+    <string name="login_idEdit">输入身份证。</string>
+    <string name="login_pw">密码</string>
+    <string name="login_pwEdit">请输入您的密码</string>
+    <string name="login_pwforgot">你忘了口令吗?</string>
+    <string name="login_btn">登录</string>
+    <string name="login_facebook">LoginFacebook</string>
+    <string name="login_join">你有什么考虑? 加入会员</string>
+    <string name="main_title">Today Trump</string>
+    <string name="alim_title">最近的警告</string>
+    <string name="content_detailed_view">详细的看法</string>
+    <string name="content_like">Like</string>
+    <string name="content_addContent">Comment</string>
+    <string name="signup_first">欢迎</string>
+    <string name="signup_name">名字</string>
+    <string name="signup_nameEdit">请输入你的名字</string>
+    <string name="signup_btn">加入</string>
 </resources>

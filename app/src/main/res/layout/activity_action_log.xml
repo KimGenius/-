@@ -32,7 +32,7 @@
                 android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="활동 기록"/>
+                android:text="@string/logTitle"/>
         </LinearLayout>
     </Toolbar>
 
@@ -71,7 +71,7 @@
                        android:textSize="20dp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="가입한지"/>
+                       android:text="@string/logJoinUs"/>
 
                    <TextView
                        android:id="@+id/signupDay"
@@ -133,7 +133,7 @@
                        android:textSize="20dp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="기여도"/>
+                       android:text="@string/logContribution"/>
 
                    <TextView
                        android:id="@+id/contriScore"
@@ -202,7 +202,7 @@
                        android:textSize="20dp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="남긴 댓글"/>
+                       android:text="@string/logComment"/>
 
                    <TextView
                        android:id="@+id/commentScore"
@@ -264,7 +264,7 @@
                        android:textSize="20dp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="받은 좋아요"/>
+                       android:text="@string/logLike"/>
 
                    <TextView
                        android:id="@+id/likeScore"
@@ -333,7 +333,7 @@
                        android:textSize="20dp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="하루 남긴 댓글"/>
+                       android:text="@string/todayComment"/>
 
                    <TextView
                        android:id="@+id/commentOnedayScore"
@@ -395,7 +395,7 @@
                        android:textSize="20dp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="하루 받은 좋아요"/>
+                       android:text="@string/todayLike"/>
 
                    <TextView
                        android:id="@+id/likeOnedayScore"

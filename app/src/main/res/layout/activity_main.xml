@@ -34,7 +34,7 @@
                 android:layout_width="300dp"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="트럼프 투데이"
+                android:text="@string/main_title"
                 android:textColor="#394dcb"
                 android:textSize="20sp"
                 android:textStyle="bold"

@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">highton_android</string>
+    <string name="logTitle">Activity record</string>
+    <string name="logJoinUs">Join us</string>
+    <string name="logContribution">Contribution</string>
+    <string name="logComment">Comment</string>
+    <string name="logLike">Like</string>
+    <string name="todayComment">Today Comment</string>
+    <string name="todayLike">Today Like</string>
+    <string name="comment_comment">Comment</string>
+    <string name="login_welcome">Welcome back!</string>
+    <string name="login_info">Log in to continue</string>
+    <string name="login_id">ID</string>
+    <string name="login_idEdit">Enter ID.</string>
+    <string name="login_pw">PW</string>
+    <string name="login_pwEdit">Please enter your password</string>
+    <string name="login_pwforgot">Forgot your password?</string>
+    <string name="login_btn">Login</string>
+    <string name="login_facebook">LoginFacebook</string>
+    <string name="login_join">Do you have any account? Join Membership</string>
+    <string name="main_title">Today Trump</string>
+    <string name="alim_title">Recent Alerts</string>
+    <string name="content_detailed_view">Detailed view</string>
+    <string name="content_like">Like</string>
+    <string name="content_addContent">Comment</string>
+    <string name="signup_first">Welcome</string>
+    <string name="signup_name">Name</string>
+    <string name="signup_nameEdit">Enter your name.</string>
+    <string name="signup_btn">Join</string>
 </resources>
