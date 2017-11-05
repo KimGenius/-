@@ -151,7 +151,7 @@ class NewsLike(Resource):
         """
         news_id = request.form.get('id')
 
-        news = NewsModel.objects(id=news_id)
+        news = NewsModel.objects(id=news_id).first()
 
         liked_users = list(news.liked_users)
         if get_jwt_identity() in liked_users:
@@ -168,9 +168,9 @@ class NewsLike(Resource):
         """
         뉴스 좋아요 취소
         """
-        news_id = request.form.get('id')
+        news_id = request.args.get('id')
 
-        news = NewsModel.objects(id=news_id)
+        news = NewsModel.objects(id=news_id).first()
 
         liked_users = list(news.liked_users)
         if get_jwt_identity() not in liked_users:

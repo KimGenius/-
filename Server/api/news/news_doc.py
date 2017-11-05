@@ -350,7 +350,7 @@ NEWS_LIKE_DELETE = {
         {
             'name': 'id',
             'description': '좋아요를 취소할 뉴스 ID',
-            'in': 'formData',
+            'in': 'query',
             'type': 'str',
             'required': True
         }
