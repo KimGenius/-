@@ -17,6 +17,7 @@ interface Api {
 
     @POST("/auth/facebook")
     @FormUrlEncoded
+
     fun authFacebook(@Field("token") token: String, @Field("name") name: String): Call<Login>
 
     @POST("/auth/google")
@@ -43,11 +44,11 @@ interface Api {
     @FormUrlEncoded
     fun addComment(@Header("Authorization") token: String, @Field("id") id: String, @Field("content") content: String): Call<Void>
 
-    @POST("/news/comment/like")
+    @POST("/news/like")
     @FormUrlEncoded
     fun addLike(@Header("Authorization") token: String, @Field("id") id: String): Call<Void>
 
-    @DELETE("/news/comment/like")
+    @DELETE("/news/like")
     fun removeLike(@Header("Authorization") token: String, @Query("id") id: String): Call<Void>
 
     @DELETE("/news/like")
@@ -60,4 +61,7 @@ interface Api {
 
     @GET("/activity-log")
     fun getActivityLog(@Header("Authorization") token: String): Call<activityLog>
+
+    @GET("/notification")
+    fun getNotification(@Header("Authorization") token: String): Call<List<notification>>
 }

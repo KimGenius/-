@@ -36,4 +36,9 @@
     <string name="main_today_trump">오늘의 트럼프</string>
     <string name="main_trump_today_info">오늘의 핫한 트럼프 정보입니다.</string>
     <string name="news">뉴스</string>
+    <string name="menu_1">최근 알림</string>
+    <string name="menu_2">활동 기록</string>
+    <string name="menu_3">비밀번호 변경</string>
+    <string name="menu_4">로그아웃</string>
+    <string name="menu_5">회원탈퇴</string>
 </resources>

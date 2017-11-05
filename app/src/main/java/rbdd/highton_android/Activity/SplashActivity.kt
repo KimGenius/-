@@ -18,7 +18,10 @@ class SplashActivity : BaseActivity() {
         GlideUtil.setGliding(this@SplashActivity, R.drawable.splash, splashImg)
 
         Handler().postDelayed({
-            goNextActivity(LoginActivity::class.java, true)
+            if (getCookie() == "")
+                goNextActivity(LoginActivity::class.java, true)
+            else
+                goNextActivity(MainActivity::class.java, true)
         }, 1000)
     }
 }

@@ -5,4 +5,7 @@ package rbdd.highton_android.Model
  * This Project is HighThon-Trump
  */
 class notification {
+    val content = ""
+    val notification_time = ""
+    val target_news = ""
 }

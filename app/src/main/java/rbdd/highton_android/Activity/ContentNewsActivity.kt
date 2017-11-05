@@ -27,7 +27,7 @@ class ContentNewsActivity : BaseActivity() {
         setContentView(R.layout.activity_show_content)
 
         goLink.bringToFront()
-        progress_bar.visibility = View.VISIBLE
+//        progress_bar.visibility = View.VISIBLE
         val id = intent.getStringExtra("id")
         Connector.api.getNews(id).enqueue(object : Responce<ContentNewsModel> {
             override fun onCall(code: Int, body: ContentNewsModel?) {
@@ -49,7 +49,7 @@ class ContentNewsActivity : BaseActivity() {
                     }
 
                     likeButton.setOnClickListener {
-                        if (isLike){
+                        if (!isLike){
                             Connector.api.addLike(getCookie(), id)
                                     .enqueue(object : Responce<Void>{
                                         override fun onCall(code: Int, body: Void?) {
@@ -81,9 +81,6 @@ class ContentNewsActivity : BaseActivity() {
             intent.putExtra("id", id)
             startActivity(intent)
         }
-
-
-        progress_bar.visibility = View.GONE
 
     }
 
