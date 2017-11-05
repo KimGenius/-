@@ -32,7 +32,7 @@ class LoginActivity : BaseActivity() {
     private fun setBtn() {
 
         joinBtn.setOnClickListener {
-            goNextActivity(SignUpActivity::class.java, false)
+            goNextActivity(MainActivity::class.java,true)
         }
 
 
@@ -42,11 +42,11 @@ class LoginActivity : BaseActivity() {
                     if (response!!.isSuccessful) {
                         response.body().run {
                             Log.d("repsones", response.body()!!.access_token)
-                            if (this!!.msg !== "") {
+                            if (this!!.msg != "") {
                                 showToast(this!!.msg)
                             } else {
                                 saveCookie(response.body()!!.access_token)
-                                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                                goNextActivity(MainActivity::class.java, true)
                             }
                         }
                     } else {

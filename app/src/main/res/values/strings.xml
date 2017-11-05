@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">highton_android</string>
+    <string name="app_name">TT</string>
     <string name="navigation_drawer_open">open</string>
     <string name="navigation_drawer_close">close</string>
     <string name="facebook_app_id">945428712262139</string>
@@ -31,4 +31,9 @@
     <string name="signup_name">이름</string>
     <string name="signup_nameEdit">이름을 입력하세요</string>
     <string name="signup_btn">회원가입</string>
+    <string name="main_trump_issue">트럼프 핫이슈</string>
+    <string name="main_trump_issue_content">가장 핫한 트럼프 정보입니다.</string>
+    <string name="main_today_trump">오늘의 트럼프</string>
+    <string name="main_trump_today_info">오늘의 핫한 트럼프 정보입니다.</string>
+    <string name="news">뉴스</string>
 </resources>

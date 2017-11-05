@@ -10,15 +10,18 @@ import kotlinx.android.synthetic.main.view_content_main_banner.view.*
 import rbdd.highton_android.Activity.ContentNewsActivity
 import rbdd.highton_android.Model.ContentBannerModel
 import rbdd.highton_android.R
+import rbdd.highton_android.Util.GlideUtil
+import rbdd.highton_android.Util.TrumpUtil
+import java.util.*
 
 /**
  * Created by root1 on 2017. 11. 5..
  */
-class ListAdapter: RecyclerView.Adapter<ListViewHolder>() {
+class ListAdapter : RecyclerView.Adapter<ListViewHolder>() {
 
     var data = emptyArray<ContentBannerModel>()
 
-    fun bind(data: Array<ContentBannerModel>){
+    fun bind(data: Array<ContentBannerModel>) {
         this.data = data
         notifyDataSetChanged()
     }
@@ -32,12 +35,12 @@ class ListAdapter: RecyclerView.Adapter<ListViewHolder>() {
         holder?.bind(data.get(position))
     }
 
-    override fun getItemCount(): Int{
+    override fun getItemCount(): Int {
         return data.size
     }
 }
 
-class ListViewHolder(view: View, context: Context): RecyclerView.ViewHolder(view){
+class ListViewHolder(view: View, context: Context) : RecyclerView.ViewHolder(view) {
     var view: View? = null
     var context: Context? = null
 
@@ -46,12 +49,13 @@ class ListViewHolder(view: View, context: Context): RecyclerView.ViewHolder(view
         this.context = context
     }
 
-    fun bind(data: ContentBannerModel){
-        with(view!!){
+    fun bind(data: ContentBannerModel) {
+        with(view!!) {
             titleText.text = data.title
             contentText.text = data.description
             likeCountText.text = "${data.like}"
             unLickCountText.text = "${data.unLike}"
+            GlideUtil.setGliding(view, TrumpUtil.getRandomTrump(), backgroundImage)
         }
 
         view?.setOnClickListener {

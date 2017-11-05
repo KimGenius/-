@@ -1,37 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <Toolbar
-        android:contentInsetStart="0dp"
-        android:elevation="4dp"
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="?attr/actionBarSize"
+        android:background="#fff"
+        android:contentInsetStart="0dp"
+        android:elevation="4dp">
+
         <LinearLayout
-            android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <ImageButton
-                android:src="@drawable/ic_back"
-                android:scaleType="centerCrop"
-                android:background="@android:color/transparent"
+                android:id="@+id/backBtn"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_width="32dp"
-                android:layout_height="32dp" />
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_back" />
 
             <TextView
-                android:textColor="@color/colorMain"
-                android:textStyle="bold"
-                android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/alim_title"/>
+                android:text="@string/alim_title"
+                android:textColor="@color/colorMain"
+                android:textSize="20dp"
+                android:textStyle="bold" />
         </LinearLayout>
     </Toolbar>
 
@@ -39,6 +42,6 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
 </LinearLayout>

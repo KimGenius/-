@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">highton_android</string>
+    <string name="app_name">TT</string>
     <string name="logTitle">活动记录</string>
     <string name="logJoinUs">加入与否</string>
     <string name="logContribution">贡献度</string>
@@ -27,4 +27,9 @@
     <string name="signup_name">名字</string>
     <string name="signup_nameEdit">请输入你的名字</string>
     <string name="signup_btn">加入</string>
+    <string name="main_trump_issue">Trump Hot Issue</string>
+    <string name="main_trump_issue_content">这是最火烫的特朗普情报。</string>
+    <string name="main_today_trump">今天的特朗普</string>
+    <string name="main_trump_today_info">这是今日的热门特朗普情报。</string>
+    <string name="news">News</string>
 </resources>

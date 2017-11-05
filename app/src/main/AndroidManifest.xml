@@ -49,6 +49,8 @@
         <activity android:name=".Activity.SignUpActivity" />
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.ContentNewsActivity" />
+        <activity android:name=".Activity.AlimActivity"/>
+        <activity android:name=".Activity.HistoryActivity"/>
 
     </application>
 

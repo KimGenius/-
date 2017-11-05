@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">highton_android</string>
+    <string name="app_name">TT</string>
     <string name="logTitle">Activity record</string>
     <string name="logJoinUs">Join us</string>
     <string name="logContribution">Contribution</string>
@@ -27,4 +27,9 @@
     <string name="signup_name">Name</string>
     <string name="signup_nameEdit">Enter your name.</string>
     <string name="signup_btn">Join</string>
+    <string name="main_trump_issue">Trump Hot Issue</string>
+    <string name="main_trump_issue_content">This is the most hot trump information.</string>
+    <string name="main_today_trump">Today Trump</string>
+    <string name="main_trump_today_info">Today hot trump information.</string>
+    <string name="news">News</string>
 </resources>

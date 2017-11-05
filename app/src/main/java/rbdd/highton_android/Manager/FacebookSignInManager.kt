@@ -23,9 +23,15 @@ class FacebookSignInManager {
         loginButton.setReadPermissions("email")
         loginButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult?) {
-                Log.d("facebook", result.toString())
+                Log.d("facebook", result!!.accessToken.token)
+                Log.d("facebookL", Locale.getDefault().language)
                 activity.saveCookie(result!!.accessToken.token)
-                activity.startActivity(Intent(activity, MainActivity::class.java))
+                if (activity.getCookie() == "") {
+
+                } else {
+                    activity.startActivity(Intent(activity, MainActivity::class.java))
+                    activity.finish()
+                }
             }
 
             override fun onError(error: FacebookException?) {
