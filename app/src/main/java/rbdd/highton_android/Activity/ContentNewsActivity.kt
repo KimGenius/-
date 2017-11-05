@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import kotlinx.android.synthetic.main.activity_show_content.*
 import rbdd.highton_android.Connect.Connector
 import rbdd.highton_android.Connect.Responce
@@ -29,7 +28,7 @@ class ContentNewsActivity : BaseActivity() {
         goLink.bringToFront()
 //        progress_bar.visibility = View.VISIBLE
         val id = intent.getStringExtra("id")
-        Connector.api.getNews(id).enqueue(object : Responce<ContentNewsModel> {
+        Connector.api.getNews(getCookie(), id).enqueue(object : Responce<ContentNewsModel> {
             override fun onCall(code: Int, body: ContentNewsModel?) {
                 if (code == 200) {
                     headerText.text = body?.title

@@ -35,7 +35,7 @@ interface Api {
     fun getListNews(@Query("page") page: Int, @Query("language") lang: String = Locale.getDefault().language): Call<Array<ContentBannerModel>>
 
     @GET("/news")
-    fun getNews(@Query("id") id: String, @Query("language") lang: String = Locale.getDefault().language): Call<ContentNewsModel>
+    fun getNews(@Header("Authorization") token: String, @Query("id") id: String, @Query("language") lang: String = Locale.getDefault().language): Call<ContentNewsModel>
 
     @GET("/news/comment")
     fun getComment(@Header("Authorization") token: String, @Query("id") id: String): Call<Array<CommnetModel>>
