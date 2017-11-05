@@ -1,4 +1,5 @@
 from datetime import date
+import random
 
 from flask import Response
 from flask_jwt_extended import get_jwt_identity, jwt_required
@@ -26,13 +27,16 @@ class MainPage(Resource):
 
         language = request.args.get('language')
 
-        hot_issue = sorted([{
+        hot_issue = [{
             'id': str(item.id),
             'title': item.title,
             'description': item.description,
             'like_count': len(list(item.liked_users)),
             'unlike_count': len(list(item.unliked_users))
-        } for item in news], key=lambda k: k['like_count'], reverse=True)[:11]
+        } for item in news]
+
+        random.shuffle(hot_issue)
+        hot_issue = sorted(hot_issue, key=lambda k: k['like_count'], reverse=True)[:11]
 
         today_trump = sorted([{
                 'id': str(item.id),
