@@ -8,4 +8,5 @@ import com.google.gson.annotations.SerializedName
 data class ContentNewsModel(@SerializedName("content")val content: String,
                             @SerializedName("title")val title: String,
                             @SerializedName("link")val link: String,
+                            @SerializedName("liked")val liked: Boolean,
                             @SerializedName("pub_date")val date: String)

@@ -3,11 +3,8 @@ package rbdd.highton_android.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import com.facebook.CallbackManager
-import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_login.*
 import rbdd.highton_android.Connect.Connector
-import rbdd.highton_android.Manager.FacebookSignInManager
 import rbdd.highton_android.Manager.GoogleSignInManager
 import rbdd.highton_android.Model.Login
 import rbdd.highton_android.R
@@ -20,8 +17,11 @@ import retrofit2.Response
  * Created by root1 on 2017. 11. 5..
  */
 class LoginActivity : BaseActivity() {
-    lateinit var faceCall: CallbackManager
+
+
     private lateinit var googleSignIn: GoogleSignInManager
+
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -50,9 +50,9 @@ class LoginActivity : BaseActivity() {
                             }
                         }
                     } else {
-                        showToast("클라이언트 부분 실패")
+                        showToast("로그인인 실패")
                     }
-                }
+               }
 
                 override fun onFailure(call: Call<Login>?, t: Throwable?) {
                     showToast("서버 연결 실패")
@@ -61,9 +61,9 @@ class LoginActivity : BaseActivity() {
             })
         }
 
-        val facebookSignin = FacebookSignInManager()
-        faceCall = CallbackManager.Factory.create()
-        facebookSignin.facebookSignIn(this@LoginActivity, facebookBtn, faceCall)
+        //val facebookSignin = FacebookSignInManager()
+        //faceCall = CallbackManager.Factory.create()
+        //facebookSignin.facebookSignIn(this@LoginActivity, facebookBtn, faceCall)
         googleBtn.setOnClickListener {
             googleSignIn = GoogleSignInManager(this@LoginActivity)
         }
@@ -74,11 +74,24 @@ class LoginActivity : BaseActivity() {
         when (requestCode) {
             GOOGLESIGNINCODE -> {
                 val account = googleSignIn.googleSignInResult(data!!)
-                showToast("" + account?.displayName)
+                account?.let {
+                    Connector.api.authGoogle(account?.id!!, account?.displayName!!, account?.email!!)
+                            .enqueue(object : Callback<Login>{
+                                override fun onFailure(call: Call<Login>?, t: Throwable?) {
+                                    t?.printStackTrace()
+                                }
+
+                                override fun onResponse(call: Call<Login>?, response: Response<Login>?) {
+                                    if (response?.code() == 201){
+                                        saveCookie(response?.body()?.access_token!!)
+                                        goNextActivity(MainActivity::class.java, true)
+                                    }
+                                }
+                            })
+                }
             }
             FACEBOOKSIGNCODE -> {
                 super.onActivityResult(requestCode, resultCode, data)
-                faceCall.onActivityResult(requestCode, resultCode, data)
             }
         }
     }

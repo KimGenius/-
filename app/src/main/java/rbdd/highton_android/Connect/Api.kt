@@ -17,11 +17,12 @@ interface Api {
 
     @POST("/auth/facebook")
     @FormUrlEncoded
-    fun authFacebook(@Field("token") token: String, @Field("name") name: String, @Field("email") email: String = ""): Call<JsonObject>
+
+    fun authFacebook(@Field("token") token: String, @Field("name") name: String): Call<Login>
 
     @POST("/auth/google")
     @FormUrlEncoded
-    fun authGoogle(@Field("token") token: String, @Field("name") name: String, @Field("email") email: String): Call<JsonObject>
+    fun authGoogle(@Field("token") token: String, @Field("name") name: String, @Field("email") email: String): Call<Login>
 
     @POST("/signup")
     @FormUrlEncoded
@@ -34,7 +35,7 @@ interface Api {
     fun getListNews(@Query("page") page: Int, @Query("language") lang: String = Locale.getDefault().language): Call<Array<ContentBannerModel>>
 
     @GET("/news")
-    fun getNews(@Query("id") id: String, @Query("language") lang: String = Locale.getDefault().language): Call<ContentNewsModel>
+    fun getNews(@Header("Authorization") token: String, @Query("id") id: String, @Query("language") lang: String = Locale.getDefault().language): Call<ContentNewsModel>
 
     @GET("/news/comment")
     fun getComment(@Header("Authorization") token: String, @Query("id") id: String): Call<Array<CommnetModel>>
@@ -43,13 +44,12 @@ interface Api {
     @FormUrlEncoded
     fun addComment(@Header("Authorization") token: String, @Field("id") id: String, @Field("content") content: String): Call<Void>
 
-    @POST("/news/comment/like")
+    @POST("/news/like")
     @FormUrlEncoded
     fun addLike(@Header("Authorization") token: String, @Field("id") id: String): Call<Void>
 
-    @DELETE("/news/comment/like")
-    @FormUrlEncoded
-    fun removeLike(@Header("Authorization") token: String, @Field("id") id: String): Call<Void>
+    @DELETE("/news/like")
+    fun removeLike(@Header("Authorization") token: String, @Query("id") id: String): Call<Void>
 
     @DELETE("/news/like")
     @FormUrlEncoded
@@ -64,4 +64,7 @@ interface Api {
 
     @GET("/notification")
     fun getNotification(@Header("Authorization") token: String): Call<List<notification>>
+
+    @GET("/info")
+    fun mypage(@Header("Authorization") token: String) : Call<MyPAge>
 }

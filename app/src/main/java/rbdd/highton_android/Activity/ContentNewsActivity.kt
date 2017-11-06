@@ -1,9 +1,10 @@
 package rbdd.highton_android.Activity
 
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.view.View
+import android.util.Log
 import kotlinx.android.synthetic.main.activity_show_content.*
 import rbdd.highton_android.Connect.Connector
 import rbdd.highton_android.Connect.Responce
@@ -18,6 +19,8 @@ import rbdd.highton_android.Util.TrumpUtil
  */
 class ContentNewsActivity : BaseActivity() {
 
+    var isLike = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_content)
@@ -25,12 +28,16 @@ class ContentNewsActivity : BaseActivity() {
         goLink.bringToFront()
 //        progress_bar.visibility = View.VISIBLE
         val id = intent.getStringExtra("id")
-        Connector.api.getNews(id).enqueue(object : Responce<ContentNewsModel> {
+        Connector.api.getNews(getCookie(), id).enqueue(object : Responce<ContentNewsModel> {
             override fun onCall(code: Int, body: ContentNewsModel?) {
                 if (code == 200) {
                     headerText.text = body?.title
                     contentNewsText.text = body?.content
                     dateText.text = body?.date
+
+                    isLike = body?.liked!!
+                    checkLike()
+
                     GlideUtil.setGliding(this@ContentNewsActivity, TrumpUtil.getRandomTrump(), img)
 
                     goLink.setOnClickListener {
@@ -39,11 +46,51 @@ class ContentNewsActivity : BaseActivity() {
                         intent.data = url
                         startActivity(intent)
                     }
+
+                    likeButton.setOnClickListener {
+                        if (!isLike){
+                            Connector.api.addLike(getCookie(), id)
+                                    .enqueue(object : Responce<Void>{
+                                        override fun onCall(code: Int, body: Void?) {
+
+                                        }
+                                    })
+                        }else{
+                            Connector.api.removeLike(getCookie(), id)
+                                    .enqueue(object : Responce<Void>{
+                                        override fun onCall(code: Int, body: Void?) {
+
+                                        }
+                                    })
+                        }
+                        isLike = !isLike
+                        checkLike()
+                    }
                 }
             }
         })
 
-//        progress_bar.visibility = View.GONE
 
+        backBtn.setOnClickListener {
+            finish()
+        }
+
+        commentButton.setOnClickListener {
+            val intent = Intent(this, CommentActivity::class.java)
+            intent.putExtra("id", id)
+            startActivity(intent)
+        }
+
+    }
+
+    fun checkLike(){
+        Log.d("xxx", "" + isLike)
+        if (isLike){
+            likeButton.setBackgroundResource(R.drawable.back_content_button_liked)
+            likeButton.setTextColor(resources.getColor(R.color.colorMain))
+        }else{
+            likeButton.setBackgroundResource(R.drawable.back_content_button_like)
+            likeButton.setTextColor(Color.WHITE)
+        }
     }
 }

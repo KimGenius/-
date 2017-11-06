@@ -2,6 +2,7 @@ package rbdd.highton_android.Activity
 
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import kotlinx.android.synthetic.main.activity_splash.*
 import rbdd.highton_android.R
 import rbdd.highton_android.Util.BaseActivity
@@ -17,8 +18,10 @@ class SplashActivity : BaseActivity() {
         setContentView(R.layout.activity_splash)
         GlideUtil.setGliding(this@SplashActivity, R.drawable.splash, splashImg)
 
+        Log.d("xxx", getCookie())
+
         Handler().postDelayed({
-            if (getCookie() == "")
+            if (getCookie().equals("JWT "))
                 goNextActivity(LoginActivity::class.java, true)
             else
                 goNextActivity(MainActivity::class.java, true)
